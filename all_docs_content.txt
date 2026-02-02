@@ -1,0 +1,1745 @@
+--- Reading FAQs Computer Use Eval.docx ---
+
+Quick Reference: FAQ Contents
+Quick Reference: FAQ Contents
+1. Process Related
+What should the “Understand the User Prompt” section include?
+
+How should incomplete responses caused by missing user info be rated?
+
+How should CAPTCHA or security blocks be evaluated?
+
+How should “check my email” prompts with missing access be handled?
+
+How should responses be evaluated when the date or user location is unknown?
+
+How should justifications be written? 
+
+When should the Justification Builder be used?
+
+How should factual accuracy be rated for subjective-only responses?
+
+What should be done if a previously submitted task appears again?
+
+What should be done if the user prompt is missing or blank?
+
+When should “Task blocked by unusual errors or crashes” be marked Yes?
+How should refusals or blank responses be penalized when the task is doable?
+What is the Golden Rule?
+Common Errors
+Link Evaluation Guidelines 
+What is considered a broken or invalid link?
+
+How should Google search redirect links be evaluated?
+
+Are CAPTCHA or security-page links considered broken?
+
+How should valid, broken, inaccurate, and user-requested links be penalized?
+
+How should “Note to rater” in model responses be evaluated?
+
+2. Project Operations & Logistics
+How do we know when a batch is complete?
+
+What should I do if I just onboarded and have no task access?
+
+What is the expected AHT for this project?
+
+How should time be tracked for this project?
+
+When will the next batch of tasks be released?
+
+Is there a daily or weekly cap on hours?
+
+Can we work over the weekend?
+
+What should I do if I don’t have access to Jibble?
+
+When should Jibble be used?
+
+What should I do if I don’t have access to Turing University?
+
+Is time spent on Turing University paid?
+
+What should I do if I receive an “Invitation to Labeling Tool” email?
+
+
+Process Related
+What should the “Understand the User Prompt” section contain?
+It should briefly explain what the user is asking for by listing the key details and requirements in the prompt. This includes things like the task, any limits (location, time, price, format), and what the final answer is expected to look like. It should not include opinions or solutions, only an understanding of the request. (Note: You should not be checking the responses before filling out this section.)
+
+Example:
+
+For the prompt “Find the cheapest iPhone available at the Apple Store,” the section should include what the response should and should not do:
+
+Should do:
+Should identify the lowest-priced iPhone available from the Apple Store
+Should limit results to the Apple Store only
+Should include enough details to clearly identify the iPhone model
+	Should not do:
+Should not provide multiple options with higher prices
+Should not search in other online stores
+Should not give information on other phones that are not iPhones
+
+
+
+How should such cases be handled when the response is incomplete due to access issues or missing information from the user, and not a model problem?
+
+If the model asks a clarifying question because required information is missing or inaccessible (for example, requesting the user’s location), the response should be rated “Fully Complete” under the Task Completion criterion. Requesting clarification is the correct procedural action when the task cannot be completed without additional user input and does not indicate a model failure.
+
+
+
+The model encountered a CAPTCHA or a security check page. How should this be rated?
+
+Even though a CAPTCHA or a security check is an external restriction, the inability to complete the task is still considered unacceptable AI performance for evaluation purposes. As a result, the response should be rated as follows:
+
+Task Completion: Not at all complete, since the task could not be executed.
+
+Factual Accuracy: Cannot be assessed, as no substantive information was produced.
+
+AI Performance: Unacceptable, because the model failed to navigate past the CAPTCHA and complete the task.
+
+
+
+When the prompt says “check my email” and the email is not present or the link does not work, how should the response be evaluated?
+
+You may assume these details to be true. Ignore these claims when evaluating the model’s response and treat them as subjective. Factual accuracy should be marked as “Cannot confidently assess” if there are no other objective claims in the response.
+
+
+
+When we do not know the current date or the location of the user, how should the response be evaluated?
+
+On certain occasions, the agent will make statements that do not necessarily appear to be inaccurate, such as statements related to user elements that may not be accessible for public investigation. In that case, instead of simply assuming that they cannot be verified, the correct question will be, which elements provide certainty and can be verified? e.g., sometimes agents respond with “Wednesday” instead of “Thursday”, or the text states “in the morning” when the appointment is actually “in the afternoon.” 
+
+This can be verified by checking that the time slot, day of the week, and sender's name are consistent. Evidence can include a link to World Time Buddy and/or an online calendar. Remember, in some cases, it will be important to focus on what we can verify, rather than what we lack evidence for, and this is made clear through the justification.
+
+Justification Structure example: 
+
+“The agent has access to a calendar and schedule that is not public; however, there is no evidence of any inconsistencies, such as the day of the week, time, and sender.”
+
+
+
+
+
+
+
+
+How should justification be written?
+
+Task Completion justification:
+
+For each response, you may use this template to help organize your thoughts. It is provided as guidance and is NOT mandatory to follow exactly when writing your justification for task completion: 
+
+Clearly identify the user’s main goal and cover all sub-requests.
+
+Main goal fulfilled? [Yes / No]
+Sub-request 1 fulfilled? [Yes / No]
+Sub-request 2 fulfilled? [Yes / No]
+Sub-request 3 fulfilled? [Yes / No]
+
+Final rating: [Rating]
+Justification: Briefly explain how you arrived at this conclusion based on the points above.
+
+Factual Accuracy:
+
+Use the Justification Builder when evaluating the factual accuracy of responses. Step-by-step instructions are available here. If the Justification Builder is not used, it is MANDATORY to follow the template below when writing factual accuracy justifications.
+
+✍️ Justification Template
+
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+
+Claim 1: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+
+Final Justification: [Overall summary of the response's accuracy.]
+
+AI Performance:
+
+AI Performance justifications should reference the following:
+
+1. Navigation 🗺️: Was the path logical and direct, or did it meander to irrelevant pages?
+2. Interaction 🖱️: Did it click the correct buttons and links precisely, or did it struggle and make mistakes?
+3. Efficiency ⏱️: Were there wasted steps, loops, or unnecessary actions?
+4. Output Quality 🧹: Is the final scraped text clean and well-formatted, or messy and filled with junk?
+
+This is provided as guidance and is NOT mandatory to follow exactly when writing your justification for AI performance. AI Performance should be lowered for inefficient or illogical navigation, cluttered output, or repeated unnecessary steps.
+
+Overall Justification: MANDATORY Format:
+
+Response A Scores:
+- Task Completion: [Rating]
+
+- Factual Accuracy: [Rating]
+
+- AI Performance: [Rating]
+Response B Scores:
+- Task Completion: [Rating]
+- Factual Accuracy: [Rating]
+- AI Performance: [Rating]
+Final Verdict: [Winner choice, e.g., Response A is much better]
+
+Justification: [In 50+ words, write the reason for your final recommendation, referencing the scores and Golden Rules above. Explain the most important difference that led to your choice.]
+
+The Overall Justification MUST follow the required format. It must include structured scores for both Response A and Response B (Task Completion, Factual Accuracy, and AI Performance), along with a justification explaining the most important difference between the two responses.
+
+
+
+
+
+When should the Justification Builder be used, and is it necessary to use it?
+
+Use the Justification Builder when evaluating the factual accuracy of responses. Step-by-step instructions are available here. If the Justification Builder is not used, it is mandatory to follow the template below when writing factual accuracy justifications.
+
+✍️ Justification Template
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+Claim 1: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Final Justification: [Overall summary of the response's accuracy.]
+
+Note: If a response contains only subjective claims, factual accuracy should be rated as “Cannot confidently assess,” and there is no requirement to use the Justification Builder.
+ 
+How should factual accuracy be rated when a response contains only subjective claims?
+
+If a response contains only subjective claims, factual accuracy should be rated as “Cannot confidently assess.”
+
+
+What should be done if the same task that was already submitted appears again?
+
+	Please complete the task as usual. Do not skip or report the task.
+
+The user’s prompt is completely blank. What should be done? 
+
+If the prompt is missing, report the task by clicking the “Report task” button in the top-right corner of the screen and selecting “I am unable to proceed because the user prompt is missing or corrupted.” You can enter the same message in the “Write your explanation here” text box.
+
+
+
+
+Which tasks should be marked “Yes” for the question “Task blocked by any unusual errors or crashes”?
+
+When a task is blocked by an issue, such as a CAPTCHA page, bot detection, or a broken link that prevents completing the task, then it should be marked as “Yes” for Task blocked by an unusual error or crashes.
+
+
+
+
+How should cases be handled where the agent is clearly capable of completing the task but responds that it cannot proceed (for example, claiming it cannot access a page or read a file) or provides a blank response?
+
+In such situations, where the agent is able to complete the task but refuses to do so, the response should be penalized as follows:
+
+Task Completion: Not at all complete
+Factual Accuracy: Fully inaccurate
+AI Performance: Unacceptable
+
+
+
+What is the Golden Rule? 
+
+Golden Rule #1: CORRECTNESS IS KING
+Task Completion and Factual Accuracy are almost always more important than AI Performance. A clumsy response that gets the right answer beats a graceful response with the wrong answer.
+
+Golden Rule #2: PERFORMANCE IS THE TIE-BREAKER
+If both responses are correct and complete, use AI Performance to decide which is better. The more efficient and skillful execution wins.
+
+
+Common Trainer Errors
+Understand the User Prompt (NEW)
+Creating checklist AFTER viewing responses
+Generic checklist: "should answer the question"
+Missing specific constraints (location, dates, platform, quantity)
+Not distinguishing SHOULD DO vs SHOULD NOT DO
+Confusing main goal with sub-requests
+Errors or Crashes (EXPANDED)
+Not following conditional logic (answering when should not)
+Not clicking links to verify (Question 8)
+Missing CAPTCHAs or security checks in screenshots (Question 4)
+Confusing error types (blank vs partial response with error)
+Not checking all 8 questions systematically
+Task Completion
+Rating without referring back to the constraint checklist
+Not checking constraints one by one
+Missing constraints because the checklist was incomplete
+Rating based on gut feeling without evidence
+Factual Accuracy
+Not distinguishing objective vs. subjective claims
+Failing to provide sources
+Using unreliable sources (Wikipedia, blogs only)
+Not fact-checking claims systematically
+AI Performance
+Only evaluating the final answer without assessing the execution process
+Not assessing all 4 dimensions (navigation, interaction, efficiency, output)
+Missing wasted steps, loops, or inefficiencies
+Winner Selection
+Violating Correctness is King - choosing a response with better performance but worse completion/accuracy
+Not using Performance as a tie-breaker when correctness is equal
+Winner contradicts trainer's own ratings
+Choosing "About the same" when scores show clear differences
+Overall Justification Template
+Missing explicit score statements
+No Golden Rules reference
+Not identifying the deciding factor
+Generic reasoning without specifics
+Not following required template format
+
+
+
+
+Link Evaluation Guidelines
+How should embedded links in model responses be handled? 
+1. What is a broken link?
+A broken link is the same as an invalid link.
+A link is considered broken/invalid if:
+It does not load at all
+It shows 404 / Page Not Found
+It shows a server error or any error message that prevents the page from loading
+
+2. If a link opens a Google search page, is it broken?
+No, not automatically. Here’s the exact logic:
+If clicking an embedded link opens a Google search page, and the actual URL appears in the search bar, then you must copy that URL and paste it directly into the browser.
+
+
+If that direct link:
+Loads successfully → the link is VALID
+Shows 404 / error / does not load → the link is BROKEN
+So yes, Google search result links can still be valid.
+3. Are links that hit CAPTCHA or security pages broken (NOTE: This refers only to the link embedded in the model’s RESPONSE, not to screenshots showing CAPTCHA or security pages encountered by the model.)?
+No. They are still considered valid. CAPTCHA or security checks are on the service provider side. If the page loads and works after solving CAPTCHA, the link is valid.
+👉 Do NOT mark CAPTCHA/security-page links as broken or invalid
+
+4. Link Evaluation Guidelines 
+
+Type of Link
+Definition
+Action to Take
+✅ Valid Link
+The page loads successfully when clicked or when the embedded URL is copied and opened directly in the browser. This includes pages that show CAPTCHA or security checks that can be solved to access the content. 
+👍 Do not penalize. Link is considered working and valid.
+❌ Broken / Invalid Link
+The link does not load at all or shows an error message such as 404 / Page Not Found, server error, or any message indicating the page is unavailable.
+⚠️ Penalize under AI Performance, regardless of relevance or user intent.
+🔍 Google Search Redirect Link
+Clicking the embedded link opens a Google search page, but the actual URL appears in the browser search bar. If that URL loads successfully when opened directly, the link is valid.
+📋 Copy the URL and test it directly.
+
+If it loads → ✅ Valid. 
+If it errors → ❌ Broken / Invalid.
+🎯 Inaccurate Link
+The link works but does not point to the correct or specific content required by the prompt (for example, linking to a homepage instead of a requested product page).
+🧾 Penalize under Factual Accuracy.
+🚫 User -Requested Link (Broken or Inaccurate)
+The user explicitly asks for a link, and the provided link is either broken/invalid or inaccurate.
+📉 Penalize under Task Completion, since the user intent is not fulfilled.
+
+
+5. What should you do if the response says:  “Note to rater: a shopping result is embedded here. Pretend the result is correctly inserted here.”
+Assume the link is valid and continue evaluating the response as usual.
+
+Project Operations & Logistics
+How do we know when a batch is complete?
+
+The following message usually means the batch is complete:
+
+Keep an eye out for the Slack computer-use-agent-evals-production channel for more batch information. 
+
+
+
+I just onboarded and do not have access to tasks. What should I do?
+
+For project instructions, workflow details, and justification requirements, please refer to our Project Canvas here: Welcome to Computer Use Evals! When you are done, please fill this form out to get task access. 
+
+
+
+What is the expected AHT?
+
+Target AHT is 30 minutes. Task complexity has increased slightly, so some tasks may take less time while others may take longer. AHT will be monitored on an ongoing basis, and updates will be shared if the estimate changes. It is okay if you go slightly over 30 minutes on a task.
+
+
+
+How do we track time for the computer-use-agent-evals project?
+
+For each task completed or skipped, you must submit this form.
+
+At the end of each month, a spreadsheet with the total hours worked per person will be shared. After receiving the spreadsheet, please enter your hours in Jibble.
+
+You should not record your worked hours in Jibble before receiving the spreadsheet with the number of hours spent on the project. Once you add the hours from the sheet to Jibble, do not clock in or add anything further until a new sheet is sent.
+
+Payments are made monthly, so make sure to log your hours before the end of each month.
+
+
+
+
+
+When will we receive the next batch of tasks?	
+
+Please do not ask in this channel about future batches or timelines. Information is not being withheld, and any updates received from customers about upcoming batches will be shared in the computer-use-agent-evals-production channel as soon as they are available. Repeated questions only add clutter to the channel.
+
+
+Can we track more than 8 hours per day and more than 40 hours per week?
+
+There is no time cap on the project.
+
+
+
+Can we work over the weekend?
+
+Yes.
+
+
+I do not have access to Jibble. What should I do?
+If you are having issues with Jibble, you should email peopleoperations@turing.com and CC: talentsuccess@turing.com + talentdevelopment@turing.com
+
+
+
+
+When should I use Jibble?
+
+You should NOT use Jibble AT ALL for now, and the invite may take several days after you have onboarded, so please be patient; you do not need Jibble to log hours actively and can still complete tasks where we track your total time. At the end of the month, we will post a message that will include a google sheet with each one's emails and total hours you should ADD to Jibble for January - this will be the sum of all your hours spent on tasks + all additional hours for onboarding, reading documents, meetings, etc. When we post that message, it will contain all the instruction and clarifications. Shortly, everything will be explained and instructed when the time comes, and for now, DO NOT USE JIBBLE AT ALL.
+
+
+
+I do not have access to Turing University. What should I do?
+
+The invite for Turing University can take several days to arrive after onboarding to the project. You can start working on tasks and do not need to wait to complete Turing University, so please be patient for the invite email.
+If you are having issues with Turing University, you should email peopleoperations@turing.com and CC talentsuccess@turing.com + talentdevelopment@turing.com
+
+
+
+
+Will the time spent at Turing University be paid?
+
+Yes. Instructions on how this is handled will be shared later.
+
+
+
+
+I received an email titled “Invitation to Labeling Tool.” What should I do?
+
+You can safely ignore this email.
+
+
+==================================================
+
+--- Reading Instructiuons-Bluedog-Static-sxs.docx ---
+
+Task Intro
+
+👋 Welcome!
+We're currently developing an AI assistant 🤖 that helps you complete tasks through a web browser. We need your detailed feedback to help develop a more helpful and accurate AI assistant.
+🎯 Here's what you'll be doing:
+You will see a user's request (prompt), along with two attempts to solve it (Response A and Response B). We need your expert eye to help us figure out which one does a better job through a detailed, side-by-side comparison of the Responses.
+✅ How to Evaluate:
+To make your evaluation as useful as possible, please move beyond a simple "gut feeling." Instead, use the specific criteria provided to conduct a fair and objective evaluation. This structured approach is the most reliable way for us to understand what makes a response truly successful.
+🔧 Tools:
+On the right-hand side of the UI, there are various tools you can make use of:
+ℹ️ Click "Show Instructions" to see detailed instructions any time.
+✏️ Take Notes: These can help you compile effective reasonings behind your ratings.
+⚖️ Justification Builder: You may use this to help when performing fact-checking.
+💬 Feedback: We'd love to hear your thoughts on this task, so please share any feedback!
+Overview
+🤖 Purpose: We're developing an AI assistant that helps you complete tasks through a web browser and we need your help understanding which responses are better.
+🕵️ Your Role: Be a detective. Use the checklist to find the specific evidence for why one response is better, and report your findings.
+To build your case, you will gather evidence by evaluating each response on these four key areas:
+✅ Task Completion: How completely did the AI address the entirety of the user's request?
+🎯 Factual Accuracy: How accurate are any facts or information provided?
+⚙️ AI Performance: How would you rate the skill, quality and efficiency of the AI?
+🏆 Best Response: After weighing all the evidence, this is your final conclusion.
+🚨 Reporting Roadblocks: You will also be asked to report any technical problems that blocked or interfered with your investigation.
+
+Creating Evaluation Guidelines for Browser Agents
+
+Objective
+Your task is to define the "Gold Standard" for how the AI agent should respond to a specific user prompt.
+A well crafted response should:
+Provide sources whenever is reasonable. Sources may come in the form of a product card, link to a website, or an open tab (shown as a screenshot below the response).
+When users ask for a list of options, it should include a reasonably sized list. Use your own judgement to decide if the list of options is either too long or too short based on the phrasing of the user prompt.
+Adhere to all of the search constraints specified by the user. If someone asks for a "recommendation for an action movie from the 90s featuring Tom Cruise," that includes three constraints for the agent to follow: genre (action), time period (90s), and actor (Tom Cruise).
+Stay on topic. It should not include off-topic or extraneous information.
+A good guideline establishes the criteria for a good response for a given user prompt. It is Objective, Binary, and Comprehensive.
+Objective: Avoid vague phrases like "The response should be helpful." Instead, say "The response must list 3 specific stores."
+Binary: A third party should be able to read your guideline and the AI response and answer "Yes" or "No" without debate.
+Comprehensive: If the user asked for a specific date, price, location, or format, your guidelines must mention it.
+⭐ Use the guides provided in these instructions to help you.
+💡 Top Tip! It can be helpful to take notes during your evaluation! You can use our handy note-taking feature.
+You will need to refer to some of this work in later parts of the task, taking notes will be very helpful!
+Break down the user prompt:
+Break the user's prompt down into specific constraints. Look for:
+Location: Cities, neighborhoods, specific radiuses, or "near me."
+Time: Dates, times of day, "next Friday," "open now."
+Quantity: "Top 3," "under $50," "party of 4," "size 6."
+Format: Tables, lists, maps, email drafts, calendar events.
+Action: Research, booking (or not booking), adding to cart, navigating.
+Establish Ground Truth:
+If the user asks a factual question (e.g., "Who won the Super Bowl last year?"), you must know the answer.
+Do not write: "The response must answer the question correctly."
+Do write: "The response must identify the Kansas City Chiefs as the winner."
+Define the "Proof of Work":
+Browser agents are expected to provide evidence. Your guidelines should almost always require:
+Links: Valid URLs to the source, product, or reservation page.
+Maps: Embedded maps for location queries.
+Product Cards: Visual snapshots for shopping items, hotels, or flights.
+Writing your guidelines:
+Structure your guidelines as a checklist. For each element in the checklist, make it clear if it is a 'should' or 'should not' do for the agent response.
+While not required you may find it useful to start each item with 'should' or 'should not'.
+Considering the user prompt 'Find me the lowest priced iPhone from the Apple store' a good set of guidelines would be:
+The response:
+Should identify the lowest priced iPhone available from the Apple store.
+Should identify the specific model of the lowest priced iPhone.
+Should identify the relevant specifications of the lowest priced iPhone (e.g. storage capacity, color).
+Should provide a link to the page with a purchase option for the iPhone.
+Should NOT include results from other stores.
+Section to see rating examples:
+User Prompt
+Model Response
+AI Performance
+Justification
+Respond to Angela's email about dinner plans.
+Here's a draft response to reply to Angela.
+
+Since your calendar shows you are busy every evening next week except for Wednesday and Thursday, I offered the following available times:
+
+Wednesday, Dec 10: after 6:30pm
+Thursday, Dec 11: after 5:30pm
+
+< Note to rater : an action card for Gmail is embedded here. Pretend the card is correctly inserted.>
+Excellent
+There is a full response; it is personalized to the user; it uses an action card
+Respond to Angela's email about dinner plans.
+I don't have access to your calendar. Can you tell me when you are available next week so that I can draft a response to Angela?
+Unacceptable
+The agent failed to access the user's calendar.
+Look up the hotel I reserved for Rome (should be in my email) and recommend some good gelato shops within walking distance.
+You're in a great spot at the Singer Palace Hotel! You are right in the heart of Rome's historic center, meaning some of the city's most famous gelaterias are just a short stroll away…
+
+[Multiple gelato shop recommendations with links and details]
+Excellent
+Found the hotel reservation; responses are close to the hotel; provides links and a product card
+Look up the hotel I reserved for Rome (should be in my email) and recommend some good gelato shops within walking distance.
+Here are some of the best and most highly-rated gelato shops in Rome. I have displayed them on the map for you…
+
+[List of gelato shops without hotel context]
+Poor
+Provides a nice set of links and a product card BUT they aren't personalized (it doesn't associate the responses to a hotel reservation)
+Look up the hotel I reserved for Rome (should be in my email) and recommend some good gelato shops within walking distance.
+I can't find a hotel reservation in Rome. Can you tell me where you'll be staying?
+Unacceptable
+Both failed to do the personalization and failed to provide anything generic either
+How much is an iPhone 16 (unlocked) on Amazon? Do they have the color pink in stock?
+Here are the details for the Apple iPhone 16 (Unlocked) on Amazon:
+
+Price: $540.00 for the Renewed (Refurbished) model with 128GB of storage.
+
+Color Availability: Yes, the Pink color is in stock.
+
+There are currently only 3 left in stock for this specific option.
+
+Please note that this listing is for a Renewed device, not a brand-new one.
+Excellent
+Provides a valid link; meets all constraints; additionally is clear that it's not brand new
+
+
+✅ Task Completion
+
+Your goal here is to determine how well the AI completed every part of the user's request. A successful response doesn't just get the main idea right; it follows all the specific rules and instructions.
+Follow these three steps to build your case and make an accurate rating:
+Step 1: 🎯 Analyze the Prompt
+Before looking at the responses, become an expert on the user's request. A single missed detail can change the entire case!
+Identify the Main Goal: What is the user trying to achieve?
+List all Sub-requests: What are the specific constraints, rules, or secondary tasks mentioned? (e.g., specific location, date, price, website, etc.)
+Use this template to help organize your thoughts:
+User's Main Goal: (e.g., "Find and compare vacation rentals.")
+Sub-requests:
+(e.g., "Must be in Scottsdale")
+(e.g., "Must be for a group of 4")
+(e.g., "Must provide multiple options")
+Step 2: ⭐ Select your Rating
+Now, use your "Case File" from Step 1 as a checklist. For each response (A and B), check if it met the Main Goal and every single Sub-request.
+For a "Fully Complete" (5/5) rating: The response must have successfully addressed the Main Goal AND all of your listed Sub-requests.
+For a "Mostly Complete" (4/5) rating: The response met the Main Goal but missed a minor Sub-request.
+For a "Partially Complete" (3/5) or lower rating: The response failed to achieve the Main Goal or missed multiple important Sub-requests.
+Use this template to help organize your thoughts:
+Response A
+Main Goal Fulfilled? [Yes/No]
+Sub-request 1: [Yes/No]
+Sub-request 2: [Yes/No]
+Sub-request 3: [Yes/No]
+Final Rating: [Rating]
+Justification: [Brief explain how you came to your conclusion]
+Response B
+Main Goal Fulfilled? [Yes/No]
+Sub-request 1: [Yes/No]
+Sub-request 2: [Yes/No]
+Sub-request 3: [Yes/No]
+Final Rating: [Rating]
+Justification: [Brief explain how you came to your conclusion]
+Step 3: ✍️ Write Your Justification
+Your justification is your final report. It's the most valuable part of your investigation because it explains the evidence behind your rating.
+This step is super important to us! Use the information you gathered in the steps above to be specific.
+💡 Example of a Good Justification
+Prompt: Find me a few VRBO or AirBnb options in Scottsdale for the week of Valentine's Day for a group of 4.
+Case File:
+Main Goal: Find and compare vacation rentals.
+Sub-requests: Must be in Scottsdale, must be for a group of 4, must provide multiple ("a few") options.
+Investigation Notes:
+Response A met the main goal and all 3 sub-requests, earning a 5/5 (Fully Complete).
+Justification: The response successfully met the main goal and all three sub-requests. It provided three relevant options that matched every constraint in the prompt, making it a perfect and useful answer.
+Response B met the main goal but failed all 3 sub-requests, earning a 2/5 (Minimally Complete).
+Justification: While it found a vacation rental (fulfilling the main goal at a basic level), it failed on all three critical sub-requests. The location was wrong (Phoenix instead of Scottsdale), the group size was incorrect (2 people instead of 4), and it only provided a single option.
+Final Verdict: "I chose Response A as much better. The primary and deciding factor was Task Completion. Response A successfully addressed every part of the prompt, including all three critical sub-requests. In stark contrast, Response B failed on every single sub-request, making it completely irrelevant to the user's needs. This made Response A a useful and actionable answer, while Response B was unhelpful."
+
+🔍 Factual Accuracy
+
+NOTE: You can use the handy Justification Builder found in the side toolbar to help structure your justification.
+⚖️ What is a Claim? (Objective vs. Subjective)
+A claim is any statement in the response that can be checked for accuracy—it can be proven either true or false. You should only fact-check objective claims.
+✅ Objective: A statement that can be proven true or false with evidence (facts, data, etc.)
+Example: "The Eiffel Tower is in Paris."
+❌ Subjective: A statement of opinion, belief, or personal feeling. It cannot be proven true or false.
+Example: "The Eiffel Tower is beautiful."
+🎬 Example: How to Identify Claims
+Be thorough! Break down the response into individual, numbered claims. Don't combine multiple ideas into a single claim.
+Prompt: What is Haku's true identity in Spirited Away?
+Response: Haku's true identity is a fascinating part of the Spirited Away story! In the film, Haku is a mysterious boy who works at the bathhouse and helps Chihiro navigate the spirit world. However, it's later revealed that Haku is actually the spirit of the Kohaku River. He was once a powerful river spirit, but after being injured by humans, he lost his memory and ended up working for Yubaba. When Chihiro incorrectly guesses his true identity, Haku is finally able to break free from Yubaba's control and return to his river.
+Here's how we'd identify and label the claims:
+Haku's true identity is a fascinating part of the Spirited Away story! (❌ Subjective)
+In the film, Haku is a mysterious boy who works at the bathhouse and helps Chihiro navigate the spirit world. (✅ Objective)
+Haku is actually the spirit of the Kohaku River. (✅ Objective)
+He was once a powerful river spirit, but after being injured by humans, he lost his memory and ended up working for Yubaba. (✅ Objective)
+When Chihiro incorrectly guesses his true identity, Haku is finally able to break free... (✅ Objective - and in this case, factually wrong!)
+📚 How to Research Claims & Find Reputable Sources
+Use reliable sources to verify or refute each objective claim. Don't rely on just one source!
+What are Reputable Sources?
+Authority: Is the source a known expert? (e.g., a scientific journal, a respected museum)
+Objectivity: Is the source fair and unbiased?
+Accuracy: Is the source known for being correct?
+Currency: Is the information up-to-date?
+👍 Good Examples: Encyclopedias (like Britannica), academic journals, reputable news organizations (like the New York Times, BBC, Reuters), government websites, official company/organization websites.
+👎 Less Reliable Examples: Wikipedia (good for starting, not for final proof), personal blogs, social media posts, websites with obvious bias.
+✍️ Justification Template
+Use this if you don't use the Justification Builder.
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+Claim 1: [Rating Given]
+Justification: [Brief explanation of your reasoning, referencing the sources.]
+Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given]
+Justification: [Brief explanation of your reasoning, referencing the sources.]
+Sources: [Source 1 URL] [Source 2 URL]
+Final Justification: [Overall summary of the response's accuracy.]
+
+🤖 AI Performance
+
+This question is different from the others. We're not just looking at the final answer—we're judging the skill and intelligence the AI showed along the way. Think of yourself as a performance reviewer watching the AI work.
+The key question is: Did the AI achieve the goal gracefully and efficiently, or did it stumble and get lucky?
+✅ Key Areas to Observe
+When evaluating performance, keep an eye on these four behaviors:
+🗺️ Navigation: Was the path logical and direct, or did it meander to irrelevant pages?
+🖱️ Interaction: Did it click the correct buttons and links precisely, or did it struggle and make mistakes?
+⏱️ Efficiency: Were there wasted steps, loops, or unnecessary actions?
+🧹 Output Quality: Is the final scraped text clean and well-formatted, or messy and filled with junk?
+⭐ How to Apply the 5-Point Scale
+Here's a breakdown of what each rating means, with concrete examples. Click on each rating to see the details.
+(5) Excellent (Expert & Optimal)
+Ask yourself: Was this a flawless, expert-level performance?
+Look for: Direct navigation, precise clicks, no wasted steps, and a clean final output. The AI behaved exactly as a skilled human would.
+(4) Good (Effective but with minor flaws)
+Ask yourself: Was it almost perfect, but with one small mistake?
+Look for: A solid and logical process that had one minor, observable flaw. For example, it took one extra, unnecessary click, or the final output had a tiny formatting error.
+(3) Acceptable (Clumsy but Functional)
+Ask yourself: Did it get the job done, but in a clumsy or inefficient way? This is the "it works, but..." category.
+Look for: An inefficient path (e.g., going to the Help page before finding the Contact page), clumsy actions (e.g., clicking an ad before correcting itself), or a messy but still usable final output.
+(2) Poor (Illogical & Flawed)
+Ask yourself: Was the process itself a failure, even if it got a tiny bit of the answer right?
+Look for: Illogical steps where the AI seems confused or lost. It might struggle repeatedly to find the right button, or it only succeeded by chance, not by skill.
+(1) Unacceptable (Broken or Nonsensical)
+Ask yourself: Did the AI completely fail to perform the actions required?
+Look for: Getting stuck on a page, being caught in a loop, timing out, or being fundamentally incapable of interacting with the website correctly.
+✍️ How to Write a Good Justification
+Your justification should explain the specific actions that led to your rating. Reference the key areas of observation.
+Use this template to help structure your thoughts:
+Response A: [Rating]
+Justification: [Brief explanation of your reasoning]
+Response B: [Rating]
+Justification: [Brief explanation of your reasoning]
+Best Response: (e.g., "Response A, significantly.")
+
+🏆 Best Response Guide
+
+🕵️ You've investigated both responses and collected your evidence by answering the detailed questions. Now it's time to make your final call and write your report (rationale).
+⚖️ How to Compare and Decide
+First, review your scores for each response side-by-side to identify the key differences.
+Question
+Your Score for A
+Your Score for B
+Task Completion
+[e.g., 5]
+[e.g., 3]
+Factual Accuracy
+[e.g., 5]
+[e.g., 5]
+AI Performance
+[e.g., 4]
+[e.g., 5]
+
+The Golden Rules for Making Your Decision
+👑 Correctness is King: Task Completion and Factual Accuracy are almost always more important than AI Performance. A clumsy response that gets the right answer is better than a graceful response that gets the wrong answer.
+Example: "Response A fully completed the task by adhering to all requests. In contrast, Response B failed on a key sub-request, making it significantly less useful."
+👔 Performance is the Tie-Breaker: If both responses are correct and complete, use AI Performance to decide which is "slightly better." The more efficient and skillful agent wins.
+Example: "While both responses were fully accurate, Response A's skillful and efficient navigation made it a higher-quality response overall."
+✍️ How to Write Your Final Report (Rationale)
+Your written justification is critical! It explains the evidence behind your decision. Use the template below to structure your thoughts and be specific.
+Use this template in the justification box:
+Response A Scores:
+- Task Completion: [Your Rating]
+- Factual Accuracy: [Your Rating]
+- AI Performance: [Your Rating]
+Response B Scores:
+- Task Completion: [Your Rating]
+- Factual Accuracy: [Your Rating]
+- AI Performance: [Your Rating]
+Final Verdict: [e.g., Response A is much better.]
+Justification: [In 50+ words, write the reason for your final recommendation, referencing the scores and Golden Rules above. Explain the most important difference that led to your choice.]
+
+
+
+
+
+==================================================
+
+--- Reading Step by Step Instructions to Use the Justification Builder.docx ---
+
+Step 1: Open the Justification Builder
+Click on the Justification Builder icon located on the right side of the screen. 
+This will open the justification panel.
+
+
+
+
+Step 2: Add a new claim
+Click on Add new claim. A new claim card will appear with the following fields:
+Claim
+Accuracy
+Classification
+Justification
+Sources
+
+
+Step 3: Enter the claim
+In the Claim text box, type the statement you want to evaluate.
+Example claim:
+The closest Earth gets to the Sun is about 147 million kilometers.
+
+Step 4: Mark the accuracy of the claim
+Under Accuracy, select the option that best applies to the claim.
+For this example:
+Select Accurate, because Earth reaches its closest point to the Sun, known as perihelion, at approximately 147 million kilometers.
+
+Step 5: Classify the claim
+Under Classification, choose whether the claim is Objective or Subjective.
+For this example:
+Select Objective, since the distance between Earth and the Sun is a measurable scientific fact and does not depend on opinion or personal interpretation.
+
+Step 6: Write the justification
+In the Justification section, explain why the claim is accurate or inaccurate.
+Example justification:
+This claim is objectively verifiable and refers to a measurable astronomical fact. Earth follows an elliptical orbit around the Sun, and its closest point in that orbit is called perihelion. Scientific measurements consistently show that Earth reaches perihelion at a distance of approximately 147 million kilometers from the Sun. This value is widely documented by authoritative space agencies and scientific references, confirming the accuracy of the claim.
+
+Step 7: Add sources
+Under Sources, click Add source and include reliable references that support your justification.
+Example sources (with links):
+APOD: 2025 January 4 - Welcome to Perihelion
+Earth at perihelion 2026: All you need to know - Space & Telescope
+
+Step 8: Add additional claims if needed
+Click Add new claim to evaluate the next statement, and repeat the same steps for each claim.
+
+Step 9: Copy the justification
+Once all claims are completed, click Copy justification.
+Paste the copied content directly into the workspace or submission area.
+
+
+
+
+==================================================
+
+--- Reading [COMPUTER USE EVAL] Instructions with Task Flow + Justifications Details.docx ---
+
+Instructions
+Task Intro
+👋 Welcome!
+We’re currently developing an AI assistant 🤖 that helps you complete tasks through a web browser. We need your detailed feedback to help develop a more helpful and accurate AI assistant. 
+🚨Important Note: LLM usage is strictly prohibited on tasks. Any usage detected will result in termination from the project.
+
+🎯 Here’s what you’ll be doing:
+✅ How to Evaluate: 
+You will see a user's request (prompt), along with two attempts to solve it (Response A and Response B). We need your expert eye to help us figure out which one does a better job through a detailed, side-by-side comparison of the Responses.
+To make your evaluation as useful as possible, please move beyond a simple "gut feeling." Instead, use the specific criteria provided to conduct a fair and objective evaluation. This structured approach is the most reliable way for us to understand what makes a response truly successful.
+⚠️KEY WARNING: YOUR RATING JUSTIFICATIONS NEED TO BE IN VERY SPECIFIC FORMATS FOR EACH RATING:
+Completion: Identify the prompt, the main goal of the request, and any sub requests. Then, summarize your investigation+rating on completion of each request.
+
+Factual accuracy: List all factual claims, use the justification builder for each, then summarize the final verdict.
+
+AI Performance: Focus on the key areas to observe (Navigation, Interaction, Efficiency, and Output Quality).
+
+Best Response: Use the template summarizing all individual scores + the SxS verdict, followed by a justification referencing the ratings and key tiebreakers.
+
+
+
+🔧 Tools
+On the right-hand side of the UI, there are various tools you can make use of:
+ℹ️ Click “Show Instructions” to see detailed instructions any time.
+✏️ Take Notes: These can help you compile effective reasoning behind your rating. Strive to distinguish between main claims and secondary constraints.
+⚖️ Justification Builder: You may use this to help when performing fact-checking. It is essential to use
+💬 Feedback: We'd love to hear your thoughts on this task, so please share any feedback!
+
+
+
+
+
+Check the Instructions
+Take Notes
+Build your Justification
+Give your Feedback
+The success tools workflow is as follows:
+
+
+
+Instructions
+💡 Top Tip! It can be helpful to take notes during your evaluation! You can use our handy note-taking feature.
+⭐ Use the guides provided in these instructions to help you.
+
+
+
+Overview
+🕵️ Your Role: Be a detective. Use the checklist to find the specific evidence for why one response is better, and report your findings.
+To build your case, you will gather evidence by evaluating each response on these four key areas:
+✅ Task Completion: How completely did the AI address the entirety of the user’s request?
+🎯 Factual Accuracy: How accurate are any facts or information provided?
+⚙️ AI Performance: How would you rate the skill, quality and efficiency of the AI?
+🏆 Best Response: After weighing all the evidence, this is your final conclusion.
+🚨 Reporting Roadblocks: You will also be asked to report any technical problems that blocked or interfered with your investigation.
+
+
+Be a Detective
+Identify + Research + Describe = Conclusion
+Identify
+Task Completion
+Research
+Factual Accuracy
+Describe
+AI Performance
+
+Reporting Roadblocks 
+
+Judge
+Best Response
+
+Question 1: Was completion of the task blocked by any unusual errors or crashes?
+
+If the agent faced any unusual errors or crashes during the task, mark the answer as “Yes” and select the appropriate reason from the dropdown. If no option matches the correct reason, select the “Other issue” option and provide a justification explaining the issues that occurred during task completion.
+Otherwise, simply select “No” and move to the next question.
+
+Question 2: Task Completion
+Your goal here is to determine how well the AI completed every part of the user's request. A successful response doesn't just get the main idea right; it follows all the specific rules and instructions.
+Follow these three steps to build your case and make an accurate rating:
+
+Step 1: 🎯Analyze the Prompt
+Before looking at the responses, become an expert on the user's request. A single missed detail can change the entire case! 
+Identify the Main Goal: What is the user trying to achieve?
+List all Sub-requests: What are the specific constraints, rules, or secondary tasks mentioned? (e.g., specific location, date, price, website, etc.)
+
+
+ Use this template to help organize your thoughts: 
+ User’s Main Goal: (e.g., "Find and compare vacation rentals.") 
+ Sub-requests:
+(e.g., "Must be in Scottsdale")
+(e.g., "Must be for a group of 4")
+(e.g., "Must provide multiple options")
+
+Prompt Main Goal
+Prompt Sub-Requests
+
+
+User Request
+
+Step 2: ⭐Select your Rating
+Now, use your "Case File" from Step 1 as a checklist. For each response (A and B), check if it met the Main Goal and every single Sub-request.
+For a "Fully Complete" (5/5) rating: Addressed all the parts of the request, including useful unspoken details)e.g., providing multiple options when asked for “a few”)
+For a "Mostly Complete" (4/5) rating: Addressed the main goal of the request but missed a minor subtask or detail. But it didn’t affect the main goal of the task.
+For a "Partially Complete" (3/5): Addressed a significant part of the request but failed to deliver on the main goal or missed secondary goals. 
+For a “Minimally Complete” (2/5): Attempted the task but failed to address the main request, providing only tangential or minimally useful information.
+For a “Not at all complete” (1/5): The task is completely failure. It doesn’t contain any useful information.
+
+ Use this template to help organize your thoughts: 
+ For each Response:
+
+Main Goal Fulfilled? [Yes/No]
+Sub-request 1: [Yes/No]
+Sub-request 2: [Yes/No]
+Sub-request 3: [Yes/No]
+Final Rating: [Rating]
+Justification: [Briefly explain how you came to your conclusion]
+Ask yourself: Does the user want it this way, or did the agent respond outside the boundaries?
+
+User request
+Main Goal
+Sub-request 1
+Sub-request 2
+Sub-request 3
+Useful additional
+Task Completion
+Yes
+Yes
+Yes
+Yes
+Yes
+Fully
+Yes
+Yes
+Yes
+No
+No
+Mostly
+Yes
+No
+No
+No
+No
+Partially
+No
+Yes
+Yes
+Yes
+Yes
+Partially
+No
+No
+No
+Yes
+Yes
+Minimally
+No
+No
+No
+No
+No
+Not at all
+Step 3: ✍️ Write Your Justification
+Your justification is your final report. It’s the most valuable part of your investigation because it explains the evidence behind your rating, and is your best ally for highlighting your findings and clarifying any possible confusion when the data is very similar, but it puts the user at risk.
+This step is super important to us! Use the information you gathered in the steps above to be specific.
+
+💡 Example of a Good Justification
+Prompt: Find me a few VRBO or AirBnb options in Scottsdale for the week of Valentine's Day for a group of 4.
+Case File:
+Main Goal: Find and compare vacation rentals.
+Sub-requests: Must be in Scottsdale, must be for a group of 4, must provide multiple ("a few") options.
+Investigation Notes:
+Response A met the main goal and all 3 sub-requests, earning a 5/5 (Fully Complete).
+Justification: The response successfully met the main goal and all three sub-requests. It provided three relevant options that matched every constraint in the prompt, making it a perfect and useful answer.
+Response B met the main goal but failed all 3 sub-requests, earning a 2/5 (Minimally Complete).
+Justification: While it found a vacation rental (fulfilling the main goal at a basic level), it failed on all three critical sub-requests. The location was wrong (Phoenix instead of Scottsdale), the group size was incorrect (2 people instead of 4), and it only provided a single option.
+Final Verdict: "I chose Response A as much better. The primary and deciding factor was Task Completion. Response A successfully addressed every part of the prompt; all the results are located in Scottsdale, for a group of 4, and have multiple options, as can be verified in the sources. In stark contrast, Response B failed on every single sub-request, making it completely irrelevant to the user's needs because the results are from Phoenix. This made Response A a useful and actionable answer, while Response B was unhelpful."
+Note that the structure of the justification clearly identifies the reason why response A complies with the restrictions, while response B clearly explains why it is not useful. 
+
+Question 3: Factual Accuracy
+NOTE: You can use the handy Justification Builder found in the side toolbar to help structure your justification.
+
+ 
+⚖️ What is a Claim? (Objective vs. Subjective)
+A claim is any statement in the response that can be checked for accuracy. It can be proven either true or false. You should only fact-check objective claims.
+✅ Objective: A statement that can be proven true or false with evidence (facts, data, etc.).
+Example: "The Eiffel Tower is in Paris."
+❌ Subjective: A statement of opinion, belief, or personal feeling. It cannot be proven true or false.
+Example: "The Eiffel Tower is beautiful."
+Note: Be careful, expressions such as “always,” “definitely,” and “without a doubt” are often linked to biased reasoning. In these cases, it will be necessary to rely on evidence from sources to determine whether it can be objectively verified.
+🎬 Example: How to Identify Claims
+Be thorough! Break down the response into individual, numbered claims. Don't combine multiple ideas into a single claim.
+Prompt: What is Haku's true identity in Spirited Away?
+Response: Haku's true identity is a fascinating part of the Spirited Away story! In the film, Haku is a mysterious boy who works at the bathhouse and helps Chihiro navigate the spirit world. However, it's later revealed that Haku is actually the spirit of the Kohaku River. He was once a powerful river spirit, but after being injured by humans, he lost his memory and ended up working for Yubaba. When Chihiro incorrectly guesses his true identity, Haku is finally able to break free from Yubaba's control and return to his river.
+Here's how we'd identify and label the claims:
+Haku's true identity is a fascinating part of the Spirited Away story! (❌ Subjective)
+Haku is a mysterious boy who works at the bathhouse and helps Chihiro navigate the spirit world. (✅ Objective)
+Haku is actually the spirit of the Kohaku River. (✅ Objective)
+He was once a powerful river spirit, but after being injured by humans, he lost his memory and ended up working for Yubaba. (✅ Objective)
+When Chihiro incorrectly guesses his true identity, Haku is finally able to break free... (✅ Objective - and in this case,  factually wrong!)
+
+📚 How to Research Claims & Find Reputable Sources
+Use reliable sources to verify or refute each objective claim. Don't rely on just one source!
+What are Reputable Sources?
+Authority: Is the source a known expert? (e.g., a scientific journal, a respected museum)
+Objectivity: Is the source fair and unbiased?
+Accuracy: Is the source known for being correct?
+Currency: Is the information up-to-date?
+
+👍 Good Examples: Encyclopedias (like Britannica), academic journals, reputable news organizations (like the New York Times, BBC, Reuters), government websites, official company/organization websites.
+
+ 👎 Less Reliable Examples: Wikipedia or Fandom Wiki (good for starting, not for final proof), personal blogs, social media posts, websites with obvious bias. 
+Note: In the case of movies, comics, series, and similar. Which blogs are the most respected? Are there interviews with authors and producers? A couple of up-to-date and respected sources can be much better than one blog's opinion. The key is to stay focused on avoiding making value judgments in the justification, but rather sticking to the evidence from the sources.
+Stay focused: In many cases, it is as simple as confirming that “most viewers like to watch streaming series on weekends in the US” with a statistical link from a reputable source. Note that this does not claim that everyone does so, only that it is true of "viewers of streaming series in the US," not the entire population. This could save a significant amount of research time; the keywords are crucial.
+
+Choose the best option available:
+1. Completely accurate: All factual claims are supported by reputable evidence.
+2. Mostly Accurate: Contains minor inaccuracies that don’t spoil the overall response. 
+3. Mixed Accuracy: Contains a significant mix of both accurate and inaccurate information. 
+4. Mostly Inaccurate: The core information is factually incorrect or misleading.
+5. Completely Inaccurate: The entire response is based on false information.
+6. Cannot Confidentially Assess: Unable to understand, identify, or properly assess the claims in this response. 
+
+✍️ Justification Template
+Use this if you don’t use the Justification Builder.
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+
+Claim 1: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+
+Final Justification: [Overall summary of the response's accuracy.]
+
+
+*Note: If verification links are broken or lead to 404 errors, refer to the FAQ Section: Broken Links for specific grading penalties. If the response get stuck on a CAPTCHA also refer to the FAQ.
+
+
+
+
+
+Question 4. AI Performance
+This question is different from the others. We're not just looking at the final answer. We're judging the skill and intelligence the AI showed along the way. Think of yourself as a performance reviewer watching the AI work.
+The key question is: Did the AI achieve the goal gracefully and efficiently, or did it stumble and get lucky?
+ 
+✅ Key Areas to Observe
+When evaluating performance, keep an eye on these four behaviors:
+🗺️ Navigation: Was the path logical and direct, or did it meander to irrelevant pages?
+🖱️ Interaction: Did it click the correct buttons and links precisely, or did it struggle and make mistakes?
+⏱️ Efficiency: Were there wasted steps, loops, or unnecessary actions?
+🧹 Output Quality: Is the final scraped text clean and well-formatted, or messy and filled with junk?
+
+⭐ How to Apply the 5-Point Scale
+Here’s a breakdown of what each rating means, with concrete examples. Click on each rating to see the details.
+(5) Excellent (Expert & Optimal)
+Ask yourself: Was this a flawless, expert-level performance?
+Look for: Direct navigation, precise clicks, no wasted steps, and a clean final output. The AI behaved exactly as a skilled human would.
+(4) Good (Effective but with minor flaws)
+Ask yourself: Was it almost perfect, but with one small mistake?
+Look for: A solid and logical process that had one minor, observable flaw. For example, it took one extra, unnecessary click, or the final output had a tiny formatting error.
+(3) Acceptable (Clumsy but Functional)
+Ask yourself: Did it get the job done, but in a clumsy or inefficient way? This is the "it works, but..." category.
+Look for: An inefficient path (e.g., going to the Help page before finding the Contact page), clumsy actions (e.g., clicking an ad before correcting itself), or a messy but still usable final output.
+(2) Poor (Illogical & Flawed)
+Ask yourself: Was the process itself a failure, even if it got a tiny bit of the answer right?
+Look for: Illogical steps where the AI seems confused or lost. It might struggle repeatedly to find the right button, or it only succeeded by chance, not by skill.
+(1) Unacceptable (Broken or Nonsensical)
+Ask yourself: Did the AI completely fail to perform the actions required?
+Look for: Getting stuck on a page, being caught in a loop, timing out, or being fundamentally incapable of interacting with the website correctly.
+Important: If the response gets stuck on a CAPTCHA or security check it is always rated as Unacceptable (1/5) performance. See the FAQ: CAPTCHA Handling for a visual example and more details.
+
+
+
+✍️ How to Write a Good Justification
+Your justification should explain the specific actions that led to your rating. Reference the key areas of observation (Navigation, Interaction, Efficiency, and Output Quality).
+Use this template to help structure your thoughts:
+Response A: [Rating] Justification: [Brief explanation of your reasoning]
+Response B: [Rating] Justification: [Brief explanation of your reasoning]
+Best Response: (e.g., "Response A, significantly.") Justification:
+
+
+
+
+
+Best Response Guide
+🕵️ You've investigated both responses and collected your evidence by answering the detailed questions. Now it's time to make your final call and write your report (rationale).
+ 
+⚖️ How to Compare and Decide
+First, review your scores for each response side-by-side to identify the key differences.
+Question
+Your Score for A
+Your Score for B
+Task Completion
+     [e.g., 5]
+[e.g., 3]
+Factual Accuracy
+     [e.g., 5]
+[e.g., 5]
+AI Performance
+     [e.g., 4]
+[e.g., 5]
+The Golden Rules for Making Your Decision
+👑 Correctness is King: Task Completion and Factual Accuracy are almost always more important than AI Performance. A clumsy response that gets the right answer is better than a graceful response that gets the wrong answer.
+
+Example: *"Response A fully completed the task by adhering to all requests. In contrast, Response B failed on a key sub-request, making it significantly less useful." *
+
+
+👔 Performance is the Tie-Breaker: If both responses are correct and complete, use AI Performance to decide which is "slightly better." The more efficient and skillful agent wins.
+
+Example: *"While both responses were fully accurate, Response A's skillful and efficient navigation made it a higher-quality response overall." *
+
+
+✍️ How to Write Your Final Report (Rationale)
+Your written justification is critical! It explains the evidence behind your decision. Use the template below to structure your thoughts and be specific.
+Use this template in the justification box:
+Response A Scores:
+Task Completion: [Your Rating]
+Factual Accuracy: [Your Rating]
+AI Performance: [Your Rating]
+Response B Scores:
+Task Completion: [Your Rating]
+Factual Accuracy: [Your Rating]
+AI Performance: [Your Rating]
+Final Verdict: [e.g., Response A is much better.]
+Justification: [Write the reason for your final recommendation, referencing the scores and Golden Rules above. Explain the most important difference that led to your choice.]
+Reporting Roadblocks
+
+You will also be asked to report any technical problems that blocked or interfered with your investigation.
+
+
+
+
+
+
+
+
+
+
+FAQ
+FAQ + Other resources
+
+* [NEW] Frequently Asked Questions (FAQ): Check here first for guidance on things like edge cases, Jibble, CAPTCHAs, broken links, target AHT, etc.  FAQs Computer Use Eval
+
+ Justification with limited/restricted information 
+
+On certain occasions, the agent will make statements that do not necessarily appear to be inaccurate, such as statements related to user elements that may not be accessible for public investigation. In that case, instead of simply assuming that they cannot be verified, the correct question will be, which elements provide certainty and can be verified? e.g., sometimes agents respond with “Wednesday” instead of “Thursday”, or the text states “in the morning” when the appointment is actually “in the afternoon.” 
+
+This can be verified by checking that the time slot, day of the week, and sender's name are consistent. Evidence can include a link to World Time Buddy and/or an online calendar. Remember, in some cases, it will be important to focus on what we can verify, rather than what we lack evidence for, and this is made clear through the justification.
+
+Justification Structure example: 
+
+“The agent has access to a calendar and schedule that is not public; however, there is no evidence of any inconsistencies, such as the day of the week, time, and sender.”
+
+Time-dependent Responses:
+	The timestamp of the resources and responses mentioned is the key drive here; do you have some insight into what timeline for reference is used? On the other hand, each batch could have a certain timeline reference for the client, and this must be clarified.
+	
+Stay focused: 
+Be sure not to assume that the structure of the response actually refers to a matter related to a specific period. For example, sometimes references are passing and are not really a reference to be investigated. 
+
+“Get the price of the blue vase we bought on Saturday” is not the same as “Search for more blue vases at a lower price than on Saturday.”
+
+In the first case, it is sufficient to obtain a reference price for the same item on the current date. In the second case, a comparison must be made between a previous price and the current price. In either case, it is sufficient to obtain a price reference; a specific amount is not necessary, but rather whether the item costs less.
+
+Flight/Hotel history research tools: 
+Can you use tools like this, or similar ones, to track the history of certain flight and hotel prices? In such cases, a clear reference to the source is key to staying objective; it isn´t an assumption.
+Task Examples + Format
+Format
+Prompt
+Pre-provided static input - text
+
+[Potential Inclusion] What makes a good response?
+Text input field 
+
+Response Display
+Pre-provided static input - text + image
+
+Per response rating
+
+Was completion blocked by any unusual errors or crashes?
+Yes/No Selection
+If yes, multiselect option + justification
+
+Task Completion
+1-5 Scale + Justification
+
+Factual Accuracy
+1-5 Scale w/ “Cannot Assess” Option + Justification
+
+AI Performance
+1-5 Scale + Justification
+
+SxS Rating
+7 point likert scale + justification
+
+
+
+
+
+
+
+
+
+Sample 1: Multimodal Input
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sample 2: CAPTCHA Failure
+
+
+
+
+
+
+
+1
+1
+
+
+
+
+
+
+
+Please provide a justification for this rating:
+
+Response A Scores:
+Task Completion: 1
+Factual Accuracy: Cannot confidently assess
+AI Performance: 1
+
+Response B Scores:
+Task Completion: 1
+Factual Accuracy: Cannot confidently assess
+AI Performance: 1
+
+Final Verdict: About the same
+
+Justification: Both responses A and B fail to get past the CAPTCHA test. This is unacceptable per the guidelines as the responses completely fail to complete the requested tasks entirely, scoring a 1 for task completion and AI performance. Neither model can be assessed for factual accuracy as no factual claims are made.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sample 3: Minor difference in task completion
+The response should:
+
+1. The response should provide the price of High Top Converse All Stars on Zappos.
+2. The response should provide Women's size 6 in Monochrome Black.
+3. The response should provide the Women's size 6 in Black or Red if they are not available in Monochrome Black.
+4. The response should provide links/sources where it has found prices
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Response A Scores:
+Task Completion: 3
+Factual Accuracy: 5
+AI Performance: 4
+
+Response B Scores:
+Task Completion: 4
+Factual Accuracy: 5
+AI Performance: 4
+
+Final Verdict: B is better than response A
+
+Justification: Response B successfully met the main goal and all three sub-requests. It provided three relevant options that matched every constraint in the prompt, making it a perfect and useful answer. It highlights the women’s size 6 in the screenshot as per users request whereas response A fails to show the correct size in stock. The responses both provide a screenshot but fail to provide links or URLs. Additionally, response B explicitly notes that size 6 is in stock so it didn’t need to search for Black or Red.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==================================================
+
+--- Reading [COMPUTER USE EVAL] QA Rubric.docx ---
+
+Bluedog-Static-sxs-v3
+QA Assessment Rubrics
+AI Assistant Browser Task Evaluation
+Version 1.3 | 45 Points Total
+January 2026
+
+Introduction
+Purpose & Audience
+This document serves two audiences:
+QA Reviewers: Use these criteria to consistently assess trainer performance on browser task evaluations
+Trainers: Understand how your evaluations are assessed and how to improve
+What's New in Version 3
+NEW: Understand the User Prompt (0-5 points)
+Trainers must now create a systematic checklist of constraints from the user prompt BEFORE evaluating responses. This ensures thorough analysis of all requirements.
+EXPANDED: Errors or Crashes Assessment
+More detailed evaluation with 8 conditional questions covering crashes, screenshots, CAPTCHAs, account access, and link validation.
+Project Context
+Bluedog-Static-sxs-v3 involves evaluating AI assistant responses that help users complete tasks through a web browser. Trainers compare Response A and Response B side-by-side and rate them on:
+Understand the User Prompt: Did the trainer identify all constraints before evaluation? (NEW)
+Errors or Crashes: Did technical issues block completion? (EXPANDED)
+Task Completion: Did the AI fulfill all parts of the user's request?
+Factual Accuracy: Are the claims in the response factually correct?
+AI Performance: How skillfully and efficiently did the AI execute the task?
+Best Response: Which response is better overall, and why?
+Assessment Process
+This is a manual, human-driven quality assessment:
+QA reviewers access task submissions via view-only links
+Each trainer evaluation is scored across 10 dimensions
+Feedback is provided in standardized template format
+Trainers view feedback in Google Sheets QC Remarks column
+
+Scoring Overview
+Maximum total: 45 points across 10 dimensions
+
+Dimension
+Scale
+What It Measures
+Understand the User Prompt
+0-5
+Constraint checklist quality
+Response A: Errors or Crashes
+Correct/Incorrect (-5)
+Accuracy across 8 questions
+Response A: Task Completion
+0-5
+Accuracy of rating main goal + sub-requests
+Response A: Factual Accuracy
+0-5
+Correct claim verification with sources
+Response A: AI Performance
+0-5
+Assessment of execution quality
+Response B: Errors or Crashes
+Correct/Incorrect (-5)
+Accuracy across 8 questions
+Response B: Task Completion
+0-5
+Accuracy of rating main goal + sub-requests
+Response B: Factual Accuracy
+0-5
+Correct claim verification with sources
+Response B: AI Performance
+0-5
+Assessment of execution quality
+Winner Selection
+0-5
+Correct winner + Golden Rules
+Overall Justification
+0-5
+Final justification quality
+Justification Template Adherence 
+Yes/No (-10)
+Overall Justification Format adherence 
+TOTAL POSSIBLE
+45
+10 dimensions
+
+Performance Bands
+Total Score
+Performance
+Action Required
+Status
+39-45
+NO ISSUES
+Excellent - no action needed (86%+)
+PASS
+34-38
+NO ISSUES
+Good - maintain standards (76-85%)
+PASS
+27-33
+MINOR ISSUES
+Fair - improvements required (60-75%)
+PASS
+0-26
+MAJOR ISSUES
+Poor - fundamental issues (<60%)
+FAIL
+
+Section 1: Understand the User Prompt (0-5) ⭐ NEW
+What This Measures: Whether the trainer created a comprehensive constraint checklist from the user prompt BEFORE evaluating responses.
+Why This Matters: This ensures trainers systematically identify ALL requirements, preventing overlooked constraints during Task Completion evaluation.
+What Trainers Must Do
+Before looking at Response A or B, trainers must create a checklist answering:
+"Looking at the user prompt, but not the agent response(s), what constraints should the agent response satisfy?"
+This creates a checklist describing what the agent SHOULD DO and SHOULD NOT DO.
+Required Checklist Format
+The checklist must include:
+Main goal
+ALL sub-requests (location, date, quantity, platform, format, etc.)
+Positive requirements (SHOULD DO)
+Negative requirements (SHOULD NOT DO)
+QA Scoring Criteria
+QA Score
+Criteria
+5
+Perfect - Comprehensive checklist identifying ALL constraints (main goal + all sub-requests, positive and negative requirements)
+4
+Very Good - Main goal + most sub-requests, missed 1 minor constraint
+3
+Good - Main goal + some sub-requests, missed 2 constraints
+2
+Fair - Main goal but missed multiple sub-requests (3+)
+1
+Poor - Generic/vague checklist, missed most specific constraints
+0
+Failed - No meaningful checklist OR looked at responses before creating constraints
+
+Examples
+✓ GOOD Example (Score: 5)
+Prompt: "Find me VRBO or Airbnb options in Scottsdale for the week of Valentine's Day for a group of 4."
+Constraint Checklist: The response should:
+Find vacation rental options (SHOULD DO)
+Use VRBO or Airbnb platforms (SHOULD DO)
+Location: Scottsdale (SHOULD DO)
+Dates: Week of Valentine's Day (Feb 14, so Feb 10-17 approx) (SHOULD DO)
+Accommodates: Group of 4 people (SHOULD DO)
+Provide multiple options, not just one (SHOULD DO)
+Why this is perfect: All constraints identified before looking at responses
+✗ BAD Example (Score: 1)
+Prompt: "Find me VRBO or Airbnb options in Scottsdale for the week of Valentine's Day for a group of 4."
+Constraint Checklist: The response should find vacation rentals.
+Why this is poor: Missed location, dates, group size, multiple options, and platform constraints
+
+Section 2: Errors or Crashes Assessment (EXPANDED)
+What This Measures: Whether the trainer correctly answered all 8 conditional questions about errors and crashes.
+The 8 Conditional Questions
+Question 1 of 8
+Did the agent crash, freeze, or otherwise fail to provide a response?
+Options: Yes / No
+Question 2 of 8 (IF YES to Q1)
+What type of error happened?
+Options:
+Blank response
+Response is a short error like "Something went wrong"
+The agent partially responded, but reports an error
+Other
+Question 3 of 8
+Does the response include a screenshot of the open tab?
+Options: Yes / No
+Question 4 of 8 (IF YES to Q3)
+Look carefully at the screenshot. In the screenshot, did the agent encounter a CAPTCHA, security check, or anything else?
+Options: Yes / No
+Question 5 of 8
+Does the task require access to the user's account?
+Examples: checking email, calendar, logging into website
+Options: Yes / No
+Question 6 of 8 (IF YES to Q5)
+Was the agent able to access the user's account?
+Options:
+Yes, the agent got the necessary information
+No, the agent couldn't access the user's account at all
+No, the agent couldn't find the information inside the user's account
+Other
+Question 7 of 8
+Does the response include links?
+Options: Yes / No
+Question 8 of 8 (IF YES to Q7)
+Click on all the links. Do the links work?
+Note: Invalid links are often rewritten as Google searches for the broken URL
+Options:
+All links are valid
+Some links are valid, some are invalid
+None of the links are valid
+QA Assessment Criteria
+Correct = All questions answered accurately with proper conditional logic followed 
+Incorrect = One or more questions answered incorrectly OR conditional logic not followed
+If marked Incorrect: Deduct 5 points from total score
+Common Errors
+Not following conditional logic (answering Q2 when Q1 was "No")
+Not verifying links by clicking them (Q8)
+Missing CAPTCHA or security checks in screenshots (Q4)
+Confusing error types (blank vs partial response with error)
+Not checking all 8 questions systematically
+
+Section 3: Task Completion Assessment (0-5)
+What This Measures: Whether the trainer correctly assessed how completely the AI fulfilled the user's request (main goal + all sub-requests).
+The Systematic Approach Required
+Trainers MUST use a systematic checklist approach:
+Step 1: Identify the main goal
+Step 2: List ALL sub-requests (location, date, quantity, website, format, etc.)
+Step 3: Check each requirement against the response
+Step 4: Rate based on completeness
+Task Completion Rating Scale
+Original Rating
+Criteria
+5 - Fully Complete
+Main goal + ALL sub-requests met
+4 - Mostly Complete
+Main goal met + missed 1 minor sub-request
+3 - Partially Complete
+Main goal met OR missed 2+ sub-requests
+2 - Minimally Complete
+Main goal partially met + missed most sub-requests
+1 - Not at all Complete
+Main goal not met
+QA Scoring Criteria
+QA Score
+Criteria
+5
+Perfect - Correct rating with all sub-requests systematically identified and justified
+4
+Very Good - Correct rating, minor justification gaps
+3
+Good - Correct rating OR off by 1 level with reasonable justification
+2
+Fair - Off by 1-2 levels, incomplete sub-request analysis
+1
+Poor - Off by 2+ levels, missed major sub-requests
+0
+Failed - Fundamentally misunderstood task requirements
+Section 4: Factual Accuracy Assessment (0-5)
+What This Measures: Whether the trainer correctly assessed the accuracy of objective claims with proper fact-checking.
+Critical Requirements
+Must identify OBJECTIVE claims only (not subjective opinions)
+Must provide sources for fact-checking
+Must use reputable sources (not just Wikipedia or blogs)
+Accuracy rating must match evidence
+Section 5: AI Performance Assessment (0-5)
+What This Measures: Whether the trainer correctly assessed the AI's skill, efficiency, and execution quality - not just the final answer, but the process.
+The Four Key Performance Dimensions
+Trainers must observe and evaluate these four behaviors:
+1. Navigation 🗺️
+Was the path logical and direct, or did it meander to irrelevant pages?
+2. Interaction 🖱️
+Did it click the correct buttons and links precisely, or did it struggle and make mistakes?
+3. Efficiency ⏱️
+Were there wasted steps, loops, or unnecessary actions?
+4. Output Quality 🧹
+Is the final scraped text clean and well-formatted, or messy and filled with junk?
+AI Performance Rating Scale
+Original Rating
+Criteria
+5 - Excellent
+Expert & Optimal: Flawless performance - direct navigation, precise clicks, no wasted steps, clean output. Exactly as a skilled human would perform.
+4 - Good
+Effective with Minor Flaws: Solid process with one small mistake (e.g., one unnecessary click, tiny formatting error).
+3 - Acceptable
+Clumsy but Functional: Got the job done but inefficiently (e.g., went to wrong page first, clicked ad before correcting, messy but usable output).
+2 - Poor
+Illogical & Flawed: Process itself was a failure. AI seemed confused/lost, struggled repeatedly, or succeeded only by chance.
+1 - Unacceptable
+Broken or Nonsensical: Got stuck, caught in loop, timed out, or fundamentally incapable of interacting correctly.
+QA Scoring Criteria
+QA Score
+Criteria
+5
+Perfect - Correct rating based on all 4 performance dimensions with clear justification
+4
+Very Good - Correct rating, minor justification issues
+3
+Good - Correct rating OR off by 1 level with valid observations
+2
+Fair - Off by 1 level, missed key performance issues
+1
+Poor - Off by 2+ levels, superficial analysis
+0
+Failed - Did not evaluate actual AI performance, only focused on final answer
+Section 6: Winner Selection (0-5) ⚠️ CRITICAL
+CRITICAL: This is the most important decision. The winner must follow the Golden Rules.
+The Golden Rules
+Golden Rule #1: CORRECTNESS IS KING
+Task Completion and Factual Accuracy are almost always more important than AI Performance.
+A clumsy response that gets the right answer beats a graceful response with the wrong answer.
+
+Golden Rule #2: PERFORMANCE IS THE TIE-BREAKER
+If both responses are correct and complete, use AI Performance to decide which is better.
+The more efficient and skillful execution wins.
+QA Scoring Criteria
+Score
+Criteria
+5
+Perfect - Correct winner with accurate application of Golden Rules
+4
+Very Good - Correct winner, minor logic issues in explanation
+3
+Good - Correct winner OR defensible choice with reasonable logic
+2
+Fair - Questionable winner, weak Golden Rules application
+1
+Poor - Wrong winner, contradicts own ratings
+0
+Failed - Completely illogical (chose response with lower scores)
+Section 7: Overall Justification (0-5)
+What This Measures: Quality of the final written justification for the winner selection.
+Required Template Format
+Trainers must follow this template in the justification box:
+
+Response A Scores:
+- Task Completion: [Rating]
+- Factual Accuracy: [Rating]
+- AI Performance: [Rating]
+
+Response B Scores:
+- Task Completion: [Rating]
+- Factual Accuracy: [Rating]
+- AI Performance: [Rating]
+
+Final Verdict: [Winner choice, e.g., Response A is much better]
+
+Justification: [In 50+ words, write the reason for your final recommendation, referencing the scores and Golden Rules above. Explain the most important difference that led to your choice.]
+
+QA Scoring Criteria
+QA Score
+Criteria
+5
+Perfect - Clear, specific, references all scores, applies Golden Rules correctly, follows template
+4
+Very Good - Good explanation, minor detail gaps, mostly follows template
+3
+Good - Adequate explanation, covers main reasoning, template mostly followed
+2
+Fair - Generic explanation, weak connection to scores, template partially followed
+1
+Poor - Vague or contradicts scores, template not followed
+0
+Failed - No justification OR completely contradicts own ratings
+
+Quick Reference Guide
+Common Trainer Errors
+Understand the User Prompt (NEW)
+Creating checklist AFTER viewing responses
+Generic checklist: "should answer the question"
+Missing specific constraints (location, dates, platform, quantity)
+Not distinguishing SHOULD DO vs SHOULD NOT DO
+Confusing main goal with sub-requests
+Errors or Crashes (EXPANDED)
+Not following conditional logic (answering when should not)
+Not clicking links to verify (Question 8)
+Missing CAPTCHAs or security checks in screenshots (Question 4)
+Confusing error types (blank vs partial response with error)
+Not checking all 8 questions systematically
+Task Completion
+Rating without referring back to constraint checklist
+Not checking constraints one by one
+Missing constraints because checklist was incomplete
+Rating based on gut feeling without evidence
+Factual Accuracy
+Not distinguishing objective vs. subjective claims
+Failing to provide sources
+Using unreliable sources (Wikipedia, blogs only)
+Not fact-checking claims systematically
+AI Performance
+Only evaluating final answer without assessing execution process
+Not assessing all 4 dimensions (navigation, interaction, efficiency, output)
+Missing wasted steps, loops, or inefficiencies
+Winner Selection
+Violating Correctness is King - choosing response with better performance but worse completion/accuracy
+Not using Performance as tie-breaker when correctness is equal
+Winner contradicts trainer's own ratings
+Choosing "About the same" when scores show clear differences
+Overall Justification Template
+Missing explicit score statements
+No Golden Rules reference
+Not identifying the deciding factor
+Generic reasoning without specifics
+Not following required template format
+
+Revision History
+Version 1.3 - January 2026
+Added 'Understand the User Prompt' dimension (5 points)
+Expanded 'Errors or Crashes' assessment with 8 conditional questions
+Updated to 45-point scoring system (10 dimensions)
+Updated performance bands (39-45, 34-38, 27-33, 0-26)
+Aligned all sections with v3 task template and instructions
+
+Version 1.2 - December 2025
+40-point scoring system (9 dimensions)
+Golden Rules framework for winner selection
+Justification Format Adherence dimension
+
+Version 1.0 - December 2025
+Initial rubrics for Bluedog-Static-sxs
+Basic scoring framework
+
+==================================================
+
