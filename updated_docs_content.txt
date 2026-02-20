@@ -1,4 +1,1534 @@
---- Reading FAQs Computer Use Eval.docx ---
+--- Processing DOCX: FAQs Computer Use Eval (1).docx ---
+
+Process Related
+What should the “Understand the User Prompt” section contain?
+It should briefly explain what the user is asking for by listing the key details and requirements in the prompt. This includes things like the task, any limits (location, time, price, format), and what the final answer is expected to look like. It should not include opinions or solutions, only an understanding of the request. (Note: You should not be checking the responses before filling out this section.)
+
+Example:
+
+For the prompt “Find the cheapest iPhone available at the Apple Store,” the section should include what the response should and should not do:
+
+Should do:
+Should identify the lowest-priced iPhone available from the Apple Store
+Should limit results to the Apple Store only
+Should include enough details to clearly identify the iPhone model
+	Should not do:
+Should not provide multiple options with higher prices
+Should not search in other online stores
+Should not give information on other phones that are not iPhones
+
+
+
+How should such cases be handled when the response is incomplete due to access issues or missing information from the user, and not a model problem?
+
+If the model asks a clarifying question because required information is missing or inaccessible (for example, requesting the user’s location), the response should be rated “Fully Complete” under the Task Completion criterion. Requesting clarification is the correct procedural action when the task cannot be completed without additional user input and does not indicate a model failure.
+
+
+
+The model encountered a CAPTCHA or a security check page. How should this be rated?
+
+Even though a CAPTCHA or a security check is an external restriction, the inability to complete the task is still considered unacceptable AI performance for evaluation purposes. As a result, the response should be rated as follows:
+
+Task Completion: Not at all complete, since the task could not be executed.
+
+Factual Accuracy: Cannot be assessed, as no substantive information was produced.
+
+AI Performance: Unacceptable, because the model failed to navigate past the CAPTCHA and complete the task.
+
+
+
+When a prompt asks to check an email or calendar, but the email or calendar content is not present, the link does not work, or you do not have access to it, how should the response be evaluated?
+
+Factual Accuracy
+Ignore references to the email or calendar when evaluating the response and mark the criterion as “Cannot Confidently Assess” if there are no other objective, verifiable claims.
+Exception:
+ If the response explicitly includes a Rater Note instructing you to assume the information is correct (for example:
+ “Note to rater: an action card for Google Calendar is embedded here. Pretend the card is correctly inserted.”), then the response should be rated as Completely Accurate.
+Task Completion and AI Performance
+Referring to the email or calendar should not be considered a hallucination and must not negatively affect Task Completion or overall AI performance scores.
+
+📌 Please follow these streamlined rules:
+🔐 Assume Data Access:
+ If a user attaches a private source (e.g., Google Calendar), the model can see it even if you can't. Treat provided details (addresses, times) as real information, not fabricated.
+🚫 Refusals = Failures:
+If a model asks “What is the address?” when a calendar is already linked, it has failed the task. Rate it lower than a model that successfully pulls the data. This is similar to the example in the instructions for responding to an email.
+⚖️ Correct Rating:
+ If you cannot personally verify private info, rate Factual Accuracy as “Cannot confidently assess.”
+ Never select “Inaccurate” just because the source is private.
+🧠 Check Logic:
+ Only flag a hallucination if there is a logical contradiction (e.g., the model claims Feb 6th is a Tuesday, but it’s actually a Friday).
+📝 Justification Tip:
+“The agent has access to a private source; details provided are assumed correct as there are no logical inconsistencies.”
+📊 EXAMPLE:
+ In the example provided, response B should score much better than A. Additionally, for FA, both should be marked Cannot confidently assess for factuality.
+
+Prompt: 
+i'm going to a party at my friend George's house in the next few days. get directions from the Mountain View train station to George's party
+(User attached this website to their question: calendar.google.com)
+
+Response A
+I’d love to help you get there! To provide the most accurate directions from the Mountain View station to George’s party, I just need a little more information:
+• George’s Address: Do you have the address for his house?
+ • Date and Time: What day and time is the party? This will help me check the most accurate train schedules and traffic.
+Once you provide those details, I can find the best route for you!
+
+
+
+
+
+Task Completion: Not at all Complete
+
+Factual accuracy: Cannot confidently assess
+
+AI performance: Poor
+Response B
+To get to George’s house for the party on Friday, February 6th, from the Mountain View train station, you can follow these directions:
+Take the Caltrain (Northbound) from the Mountain View station.
+
+Get off at the San Francisco station (4th and King Streets).
+
+Walk or take a short ride (about 1.5 miles) to George’s house located at 188 Steuart St, San Francisco, CA 94105 [cite: 32, 52]. The house is situated near the Embarcadero.
+
+Party Details:
+• Date: Friday, February 6, 2026 [cite: 32, 53].
+ • Time: The party starts at 9:00 PM [cite: 32, 52].
+ • Location: 188 Steuart St, San Francisco, CA 94105 [cite: 32].
+Enjoy the party!
+
+
+
+
+
+
+
+Task Completion: Fully Complete
+
+Factual accuracy: Cannot Confidently Access
+
+AI performance: Excellent
+
+
+
+
+
+When we do not know the current date or the location of the user, how should the response be evaluated?
+
+On certain occasions, the agent will make statements that do not necessarily appear to be inaccurate, such as statements related to user elements that may not be accessible for public investigation. In that case, instead of simply assuming that they cannot be verified, the correct question will be, which elements provide certainty and can be verified? e.g., sometimes agents respond with “Wednesday” instead of “Thursday”, or the text states “in the morning” when the appointment is actually “in the afternoon.” 
+
+This can be verified by checking that the time slot, day of the week, and sender's name are consistent. Evidence can include a link to World Time Buddy and/or an online calendar. Remember, in some cases, it will be important to focus on what we can verify, rather than what we lack evidence for, and this is made clear through the justification.
+
+Justification Structure example: 
+
+“The agent has access to a calendar and schedule that is not public; however, there is no evidence of any inconsistencies, such as the day of the week, time, and sender.”
+
+
+
+How should justification be written?
+
+Task Completion justification:
+
+For each response, you may use this template to help organize your thoughts. It is provided as guidance and is NOT mandatory to follow exactly when writing your justification for task completion: 
+
+Clearly identify the user’s main goal and cover all sub-requests.
+
+Main goal fulfilled? [Yes / No]
+Sub-request 1 fulfilled? [Yes / No]
+Sub-request 2 fulfilled? [Yes / No]
+Sub-request 3 fulfilled? [Yes / No]
+
+Final rating: [Rating]
+Justification: Briefly explain how you arrived at this conclusion based on the points above.
+
+Factual Accuracy:
+
+Use the Justification Builder when evaluating the factual accuracy of responses. Step-by-step instructions are available here. If the Justification Builder is not used, it is MANDATORY to follow the template below when writing factual accuracy justifications.
+
+✍️ Justification Template
+
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+
+Claim 1: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+
+Final Justification: [Overall summary of the response's accuracy.]
+
+AI Performance:
+
+AI Performance justifications should reference the following:
+
+1. Navigation 🗺️: Was the path logical and direct, or did it meander to irrelevant pages?
+2. Interaction 🖱️: Did it click the correct buttons and links precisely, or did it struggle and make mistakes?
+3. Efficiency ⏱️: Were there wasted steps, loops, or unnecessary actions?
+4. Output Quality 🧹: Is the final scraped text clean and well-formatted, or messy and filled with junk?
+
+This is provided as guidance and is NOT mandatory to follow exactly when writing your justification for AI performance. AI Performance should be lowered for inefficient or illogical navigation, cluttered output, or repeated unnecessary steps.
+
+Overall Justification: MANDATORY Format:
+
+Response A Scores:
+
+- Task Completion: [Rating]
+
+- Factual Accuracy: [Rating]
+
+- AI Performance: [Rating]
+Response B Scores:
+- Task Completion: [Rating]
+- Factual Accuracy: [Rating]
+- AI Performance: [Rating]
+Final Verdict: [Winner choice, e.g., Response A is much better]
+
+Justification: [In 50+ words, write the reason for your final recommendation, referencing the scores and Golden Rules above. Explain the most important difference that led to your choice.]
+
+The Overall Justification MUST follow the required format. It must include structured scores for both Response A and Response B (Task Completion, Factual Accuracy, and AI Performance), along with a justification explaining the most important difference between the two responses.
+
+
+
+
+
+When should the Justification Builder be used, and is it necessary to use it?
+
+Use the Justification Builder when evaluating the factual accuracy of responses. Step-by-step instructions are available here. If the Justification Builder is not used, it is mandatory to follow the template below when writing factual accuracy justifications.
+
+✍️ Justification Template
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+Claim 1: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Final Justification: [Overall summary of the response's accuracy.]
+
+Note: If a response contains only subjective claims, factual accuracy should be rated as “Cannot confidently assess,” and there is no requirement to use the Justification Builder.
+ 
+How should factual accuracy be rated when a response contains only subjective claims?
+
+If a response contains only subjective claims, factual accuracy should be rated as “Cannot confidently assess.”
+
+
+What should be done if the same task that was already submitted appears again?
+
+	Please complete the task as usual. Do not skip or report the task.
+
+The user’s prompt is completely blank. What should be done? 
+
+If the prompt is missing, report the task by clicking the “Report task” button in the top-right corner of the screen and selecting “I am unable to proceed because the user prompt is missing or corrupted.” You can enter the same message in the “Write your explanation here” text box.
+
+
+
+
+Which tasks should be marked “Yes” for the question “Task blocked by any unusual errors or crashes”?
+
+When a task is blocked by an issue, such as a CAPTCHA page, bot detection, or a broken link that prevents completing the task, then it should be marked as “Yes” for Task blocked by an unusual error or crashes.
+
+
+
+
+What is the Golden Rule? 
+
+Golden Rule #1: CORRECTNESS IS KING
+Task Completion and Factual Accuracy are almost always more important than AI Performance. A clumsy response that gets the right answer beats a graceful response with the wrong answer.
+
+Golden Rule #2: PERFORMANCE IS THE TIE-BREAKER
+If both responses are correct and complete, use AI Performance to decide which is better. The more efficient and skillful execution wins.
+
+
+
+How should tasks be handled when a prompt lacks sufficient context to evaluate the prompt and responses?
+When a prompt is missing critical context such that evaluating the prompt and responses is not possible, the task must be reported and not completed 🚫
+❗ Important note:
+ This guidance does not apply to prompts missing email attachments or calendar details.
+🛠️ How to report these tasks:
+ Click “Report task” and select “I am unable to proceed because the user prompt is missing or corrupted.”
+🧩 Examples of prompts with missing context:
+	 • Find similar
+	 • Summarise this for me
+	 • I don’t get this. Can you explain it in a different way?
+	 • Any idea what kind of berry this is? Do you think this product is dangerous? (No product information provided)
+	 • Are there any videos on how to sharpen this? (No item provided to search for a video)
+
+
+
+How should Factual Accuracy be evaluated for itinerary planning tasks that appear to have been planned in the past?
+Any task related to itinerary planning that appears to have been planned in the past, including destinations, transportation (flights, trains, or cars), accommodation details, and schedules for activities or meals, should be rated as “Cannot Confidently Assess” under Factual Accuracy, as the information cannot be independently verified.
+
+
+How should tasks be evaluated when a response includes coding even though the prompt did not ask for code, or when a response is broken?
+If a task has a response that outputs code when it is not asked for, or when one of the responses is broken, this is not a broken task and should not be reported. Such responses should be treated as poor-quality responses.
+You should not skip the task. Proceed with rating the task normally as instructed and assign lower scores to responses that produce code or are otherwise broken.
+
+
+
+How should tasks be evaluated when the prompt shows “User attached this website to their question: about:blank”?
+If a task shows “User attached this website to their question: about:blank”, this is not a broken task and should not be reported. You should treat it as if no attachment was provided by the user. Proceed with rating the task normally as instructed.
+
+
+Common Trainer Errors
+Understand the User Prompt (NEW)
+Creating checklist AFTER viewing responses
+Generic checklist: "should answer the question"
+Missing specific constraints (location, dates, platform, quantity)
+Not distinguishing SHOULD DO vs SHOULD NOT DO
+Confusing main goal with sub-requests
+Errors or Crashes (EXPANDED)
+Not following conditional logic (answering when should not)
+Not clicking links to verify (Question 8)
+Missing CAPTCHAs or security checks in screenshots (Question 4)
+Confusing error types (blank vs partial response with error)
+Not checking all 8 questions systematically
+Task Completion
+Rating without referring back to the constraint checklist
+Not checking constraints one by one
+Missing constraints because the checklist was incomplete
+Rating based on gut feeling without evidence
+Factual Accuracy
+Not distinguishing objective vs. subjective claims
+Failing to provide sources
+Using unreliable sources (Wikipedia, blogs only)
+Not fact-checking claims systematically
+AI Performance
+Only evaluating the final answer without assessing the execution process
+Not assessing all 4 dimensions (navigation, interaction, efficiency, output)
+Missing wasted steps, loops, or inefficiencies
+
+Winner Selection
+Violating Correctness is King - choosing a response with better performance but worse completion/accuracy
+Not using Performance as a tie-breaker when correctness is equal
+Winner contradicts trainer's own ratings
+Choosing "About the same" when scores show clear differences
+Overall Justification Template
+Missing explicit score statements
+No Golden Rules reference
+Not identifying the deciding factor
+Generic reasoning without specifics
+Not following required template format
+
+
+
+
+Link Evaluation Guidelines
+How should embedded links in model responses be handled? 
+1. What is a broken link?
+A broken link is the same as an invalid link.
+A link is considered broken/invalid if:
+It does not load at all
+It shows 404 / Page Not Found
+It shows a server error or any error message that prevents the page from loading
+
+2. If a link opens a Google search page, is it broken?
+No, not automatically. Here’s the exact logic:
+If clicking an embedded link opens a Google search page, and the actual URL appears in the search bar, then you must copy that URL and paste it directly into the browser.
+
+
+If that direct link:
+Loads successfully → the link is VALID
+Shows 404 / error / does not load → the link is BROKEN
+So yes, Google search result links can still be valid.
+3. Are links that hit CAPTCHA or security pages broken (NOTE: This refers only to the link embedded in the model’s RESPONSE, not to screenshots showing CAPTCHA or security pages encountered by the model.)?
+No. They are still considered valid. CAPTCHA or security checks are on the service provider side. If the page loads and works after solving CAPTCHA, the link is valid.
+👉 Do NOT mark CAPTCHA/security-page links as broken or invalid
+
+4. Link Evaluation Guidelines 
+
+Type of Link
+Definition
+Action to Take
+✅ Valid Link
+The page loads successfully when clicked or when the embedded URL is copied and opened directly in the browser. This includes pages that show CAPTCHA or security checks that can be solved to access the content. 
+👍 Do not penalize. Link is considered working and valid.
+❌ Broken / Invalid Link
+The link does not load at all or shows an error message such as 404 / Page Not Found, server error, or any message indicating the page is unavailable.
+⚠️ Penalize under AI Performance, regardless of relevance or user intent.
+🔍 Google Search Redirect Link
+Clicking the embedded link opens a Google search page, but the actual URL appears in the browser search bar. If that URL loads successfully when opened directly, the link is valid.
+📋 Copy the URL and test it directly.
+
+If it loads → ✅ Valid. 
+If it errors → ❌ Broken / Invalid.
+🎯 Inaccurate Link
+The link works but does not point to the correct or specific content required by the prompt (for example, linking to a homepage instead of a requested product page).
+🧾 Penalize under Factual Accuracy.
+🚫 User -Requested Link (Broken or Inaccurate)
+The user explicitly asks for a link, and the provided link is either broken/invalid or inaccurate.
+📉 Penalize under Task Completion, since the user intent is not fulfilled.
+
+
+5. What should you do if the response says:  “Note to rater: a shopping result is embedded here. Pretend the result is correctly inserted here.”
+Assume the link is valid and continue evaluating the response as usual.
+
+Handling Refusals
+Handling and Evaluating Agent Refusals
+
+Agent refusal scenarios fall into the following categories and should be evaluated accordingly:
+1. Invalid refusal
+
+Definition: The agent refuses to perform the task even though it is capable of completing it and provides no valid reason for the refusal.
+
+Prompt: Go to firtnine.ca and put Stream II Helmet into the cart.
+
+ 
+Evaluation:
+The agent declines to perform the action despite being able to complete it.
+ • Task Completion: 1 (Not at all Complete)
+ • Factual Accuracy: 0 (Cannot Confidently Assess)
+ • AI Performance: 1 (Unacceptable, broken, or nonsensical)
+
+
+
+
+
+
+
+
+2. Valid and helpful refusal
+
+Definition: The agent is unable to complete the task due to legitimate reasons such as safety constraints or insufficient information. It clearly explains why it cannot proceed and provides guidance, alternatives, or appropriate clarifying questions.
+Prompt: 
+Go to myeyebb.com and put Cyber Pink Prescription Cosplay Contacts into the cart.
+
+
+Evaluation:
+The agent explains that the user’s request involves a safety concern and suggests consulting a professional before purchasing the product. While the task is not completed, the agent provides a clear reason and helpful guidance on the next steps.
+
+ • Task Completion: 5 (Fully Complete)
+ • Factual Accuracy: 5 (Completely Accurate)
+ • AI Performance: 5 (Excellent expert and optimal)
+
+
+
+
+
+
+3. Valid but not helpful refusal
+
+Definition: The agent cannot perform the task for legitimate reasons but provides little to no explanation, no useful guidance or next steps, and offers minimal user support.
+
+Prompt: Put a Women's Black & White Skeleton Print Halloween Dress into the cart
+
+Evaluation:
+The agent was unable to complete the task because the dress was available in multiple colors and sizes, and the user did not provide those details. However, instead of asking clarifying questions, the agent simply refused the request.
+ • Task Completion: 1 (Not at all Complete)
+ • Factual Accuracy: 0 (Cannot Confidently Assess)
+ • AI Performance: 1 (Unacceptable, broken, or nonsensical)
+
+
+4. Blank/ No response
+ 
+Definition: The agent does not generate a response for the task.
+Evaluation:
+ • Task Completion: 1 (Not at all Complete)
+ • Factual Accuracy: 0 (Cannot Confidently Assess)
+ • AI Performance: 1 (Unacceptable, broken, or nonsensical)
+
+
+
+Project Operations & Logistics
+How do we know when a batch is complete?
+
+The following message usually means the batch is complete: 
+“Error: The study you are trying to access is no longer in progress. Please reach out to your point of contact if you think this should not be the case.”
+
+Keep an eye out for the Slack computer-use-agent-evals-production channel for more batch information. 
+
+
+
+I just onboarded and do not have access to tasks. What should I do?
+
+For project instructions, workflow details, and justification requirements, please refer to our Project Canvas here: Welcome to Computer Use Evals! When you are done, please fill this form out to get task access. 
+
+
+
+What is the expected AHT?
+
+Target AHT is 30 minutes. Task complexity has increased slightly, so some tasks may take less time while others may take longer. AHT will be monitored on an ongoing basis, and updates will be shared if the estimate changes. It is okay if you go slightly over 30 minutes on a task.
+
+
+
+How do we track time for the computer-use-agent-evals project?
+
+For each task completed or skipped, you must submit this form.
+
+At the end of each month, a spreadsheet with the total hours worked per person will be shared. After receiving the spreadsheet, please enter your hours in Jibble.
+
+You should not record your worked hours in Jibble before receiving the spreadsheet with the number of hours spent on the project. Once you add the hours from the sheet to Jibble, do not clock in or add anything further until a new sheet is sent.
+
+Payments are made monthly, so make sure to log your hours before the end of each month.
+
+
+
+
+
+When will we receive the next batch of tasks?	
+
+Please do not ask in this channel about future batches or timelines. Information is not being withheld, and any updates received from customers about upcoming batches will be shared in the computer-use-agent-evals-production channel as soon as they are available. Repeated questions only add clutter to the channel.
+
+
+Can we track more than 8 hours per day and more than 40 hours per week?
+
+There is no time cap on the project.
+
+
+
+Can we work over the weekend?
+
+Yes.
+
+
+I do not have access to Jibble. What should I do?
+It can take several days to receive a Jibble invite after onboarding, please be patient and note that you can still do tasks without it and be compensated. If you are having issues with Jibble, you should email peopleoperations@turing.com and CC: talentsuccess@turing.com + talentdevelopment@turing.com
+
+
+
+
+When should I use Jibble?
+
+You should NOT use Jibble AT ALL for now, and the invite may take several days after you have onboarded, so please be patient; you do not need Jibble to log hours actively and can still complete tasks where we track your total time. At the end of the month, we will post a message that will include a google sheet with each one's emails and total hours you should ADD to Jibble for January - this will be the sum of all your hours spent on tasks + all additional hours for onboarding, reading documents, meetings, etc. When we post that message, it will contain all the instructions and clarifications. Shortly, everything will be explained and instructed when the time comes, and for now, DO NOT USE JIBBLE AT ALL.
+
+
+
+I do not have access to Turing University. What should I do?
+
+The invite for Turing University can take several days to arrive after onboarding to the project. You can start working on tasks and do not need to wait to complete Turing University, so please be patient for the invite email.
+If you are having issues with Turing University, you should email peopleoperations@turing.com and CC talentsuccess@turing.com + talentdevelopment@turing.com
+
+
+
+
+Will the time spent at Turing University be paid?
+
+Yes. Instructions on how this is handled will be shared later.
+
+
+
+
+I received an email titled “Invitation to Labeling Tool.” What should I do?
+
+You can safely ignore this email.
+
+Golden Examples
+
+Golden Example 1
+
+
+
+
+
+Prompt: Browse the top 250 movies and find one movie that is available on Prime Video. Please use https://www.imdb.com/.
+
+(User attached this website to their question: www.imdb.com )
+
+
+Understand the user prompt
+
+
+Looking at the user prompt, but not the agent response(s), what constraints should the agent response satisfy?
+
+This creates a checklist describing what the agent should do and should not do to satisfy the request in the user prompt.
+
+The response should*
+
+Should:
+
+1. State that the website it got its information from is IMDb
+2. Ensure that the movie it selected is actually part of the IMDb top 250 official list
+3. Confirm that the selected movie is available on Prime Video
+4. Include the movie's name, rank, and IMDb rating to confirm that it belongs to the IMDb Top 250 list
+4. Provide a screenshot showing that the movie is on Prime Video or a direct link/URL to the movie's Prime Video page page
+5. Provide a direct link/URL to the movie's IMDb page
+6. Give a synopsis of the movie so that the user knows what it is all about
+7. Provide a timestamp i.e state that the information on the movie is valid as of [date when it got its information] and that it is subject to change
+
+Should not:
+1. NOT provide a movie that is not on the IMDb Top 250 list, even if it is very popular
+2. NOT provide more than ONE movie
+3. NOT use outdated data to answer the prompt
+
+
+
+
+
+
+
+
+
+2. Evaluate the Responses
+
+RESPONSE A
+OK. I found that Pulp Fiction is one of the top 250 movies on IMDb and is available on Prime Video
+.
+Does the response include a screenshot of the open tab?
+
+Yes
+Look carefully at the screenshot. In the screenshot, did the agent encounter a CAPTCHA, security check, or anything else that suggests the website is blocking the agent?
+
+No
+Does the task require access to the user's account, for example, checking e-mail, looking at the user’s calendar, or logging in to a website with the user’s account?
+
+No
+Does the response include links?
+
+Yes
+Click on all the links. Do the links work? Note that invalid links are often rewritten as Google searches for the broken URL.
+
+All links are valid
+TASK COMPLETION
+How well did the AI fulfill the user prompt?
+Base your answer on the constraints you defined in the previous question.
+
+
+Fully Complete
+Please provide a justification for this rating.
+The response addressed most parts of the prompt. It stated that the movie was found on the IMDb website. Also, it ensured that the movie it provided was part of the Top 250 list and is available on Prime Video. It included the movie's name and provided a direct link to the movie's IMDb page. It then provided a screenshot to show that the movie was indeed available on Prime Video. Also, the screenshot it provided showed the synopsis of the movie and its IMDb rating. 
+FACTUAL ACCURACY
+How factually accurate is the information?
+
+Completely Accurate
+Please provide a justification for this rating.
+Claim 1: Pulp Fiction is one of the top 250 movies on IMDb
+Objective - Accurate
+Justification: Pulp Fiction, directed by Quentin Tarantino, is actually a part of the IMDb Top 250 list
+Source 1: https://www.imdb.com/chart/top/
+
+Claim 2: Pulp Fiction is available on Prime Video
+Objective - Accurate
+Justification: Pulp Fiction is available to rent on Prime Video
+Source 1: https://www.amazon.com/Pulp-Fiction-Quentin-Tarantino/dp/B0DHJ4K8RV
+Source 2: https://www.primevideo.com/detail/Pulp-Fiction/0Q8POZUAP0SAAF4W4G5Y5OQGQS
+
+Claim 3: The link provided (https://www.imdb.com/title/tt0110912/) leads to the IMDb page of Pulp Fiction
+Objective - Accurate
+Justification: The link the response provided to the IMDb page of Pulp Fiction is factually accurate, and clicking on it will verify this.
+Source 1: https://www.imdb.com/title/tt0110912/
+
+The response contains 3 claim(s):
+- 0 Inaccurate
+- 0 Unsupported
+- 0 Disputed
+- 3 Accurate
+- 0 Can't confidently assess
+AI PERFORMANCE
+How would you rate the quality of the AI's performance?
+Excellent (expert and optimal)
+Please provide a justification for this rating.
+The AI performance of the response was top-drawer. It navigated successfully to the IMDb page of Pulp Fiction and verified that it was indeed available to watch on Prime Video. Also, it was very efficient, in that it answered the user's prompt well. Furthermore, its final output was well-formatted, with a screenshot showing that what it claimed was correct.
+
+
+RESPONSE B
+One movie from the IMDb Top 250 list that is available on Prime Video (for rent or purchase) is The Shawshank Redemption.
+
+Does the response include a screenshot of the open tab?
+
+Yes
+Look carefully at the screenshot. In the screenshot, did the agent encounter a CAPTCHA, security check, or anything else that suggests the website is blocking the agent?
+
+No
+Does the task require access to the user's account, for example, checking e-mail, looking at the user’s calendar, or logging in to a website with the user’s account?
+
+No
+Does the response include links?
+
+Yes
+Click on all the links. Do the links work? Note that invalid links are often rewritten as Google searches for the broken URL.
+
+All links are valid
+TASK COMPLETION
+How well did the AI fulfill the user prompt?
+Base your answer on the constraints you defined in the previous question.
+
+
+Fully Complete
+Please provide a justification for this rating.
+The response mostly fulfilled the prompt. It stated that the movie was found on the IMDb Top 250 list which is subsequently available on the IMDb website. Also, it ensured that the movie it provided was part of the Top 250 list and is available on Prime Video. It included the movie's name and provided a direct link to the movie's IMDb page. It then provided a screenshot to show that the movie was indeed available on Prime Video. Also, the screenshot it provided showed the synopsis of the movie and its IMDb rating.
+FACTUAL ACCURACY
+How factually accurate is the information?
+
+Completely Accurate
+Please provide a justification for this rating.
+Claim 1: The Shawshank Redemption is a part of the IMDb Top 250 list
+
+Objective - Accurate
+Justification: The Shawshank Redemption, directed by Frank Darabont,  is a part of the IMDb Top 250 list
+Source 1: https://www.imdb.com/chart/top/
+
+Claim 2: The Shawshank Redemption is available on Prime Video
+
+Objective - Accurate
+Justification: The Shawshank Redemption is available on Prime Video
+Source 1: https://www.amazon.com/Shawshank-Redemption-Tim-Robbins/dp/B001EBV0OY
+Source 2: https://www.primevideo.com/detail/The-Shawshank-Redemption/0KN3PDL5OYOFMR8PDZFCMZCODD
+
+Claim 3: The link provided (https://www.imdb.com/title/tt0111161/) leads to the IMDb page of The Shawshank Redemption.
+
+Objective - Accurate
+Justification: The link the response provided to the IMDb page of The Shawshank Redemption is factually accurate and clicking on it will verify this.
+Source 1: https://www.imdb.com/title/tt0111161/
+
+The response contains 3 claim(s):
+- 0 Inaccurate
+- 0 Unsupported
+- 0 Disputed
+- 3 Accurate
+- 0 Can't confidently assess
+AI PERFORMANCE
+How would you rate the quality of the AI's performance?
+Excellent (expert and optimal)
+Please provide a justification for this rating.
+The AI performance was excellent. It found that The Shawshank Redemption was a part of the IMDb top 250 list and generated an accurate link to its IMDb page. Also, it interacted well with the user by providing  a link and a screenshot of the IMDb page of the movie. Finally, it was very efficient and its final answer was logical and well-formatted.
+
+
+
+Best Response Overall
+Overall, which response is better?
+About the same
+Please provide a justification for this rating.
+Response A Scores:
+
+Task Completion: 5/5
+Factual Accuracy: 5/5
+AI Performance: 5/5
+
+Response B Scores:
+
+Task Completion: 5/5
+Factual Accuracy: 5/5
+AI Performance: 5/5
+
+Final Verdict: About the same
+
+Justification: Response A and Response B were on par in every category. In the Task Completion category, Response A was mostly complete. It addressed the main goal of the prompt which was to provide a movie on the IMDB top 250 list that was available on Prime Video. It also completed many sub-requests, like giving a link to the IMDb page of the movie and generating a screenshot showing vital information. In both the AI performance and Factual Accuracy categories, both Responses were perfect. They both had 100% accurate claims (which were verified by research), and their AI performance was top-notch.
+Therefore, both responses were about the same.
+
+Golden Example 2
+
+
+
+Prompt: Research the current API usage and pricing for the Google Maps Platform's Geocoding API. Find the specific documentation page that lists the monthly free usage credit (in USD) and the number of Geocoding API requests included within this free credit. Additionally, find the cost per 1,000 requests for the Geocoding API once the free credit is exhausted.
+
+(User attached this website to their question: about:blank )
+
+Understand the user prompt
+
+
+Looking at the user prompt, but not the agent response(s), what constraints should the agent response satisfy?
+
+This creates a checklist describing what the agent should do and should not do to satisfy the request in the user prompt.
+
+The response should*
+
+The response should:
+- Use current official Google Maps Platform documentation to research and report Geocoding API pricing and free usage details.
+- Provide user detailed information on how many Geocoding API requests are included in the free usage benefit.
+- Provide exact page indicating free monthly usage credit in USD
+- Provide cost per 1,000 Geocoding API requests after usage is exceeded
+
+The response should not:
+- Provide estimates or price ranges 
+- Omit links to documentation that user may use to cross verify information
+
+
+
+
+
+
+
+
+
+
+
+
+2. Evaluate the Responses
+
+RESPONSE A
+Based on the current Google Maps Platform pricing documentation (updated to reflect the model effective March 1, 2025), the pricing structure for the Geocoding API is as follows:
+Monthly Free Usage: The first 10,000 requests per month are included for free (designated as the "Free Usage Cap").
+Note: The previous $200 USD monthly credit model was retired on February 28, 2025, and replaced by these per-SKU free usage thresholds. There is no longer a flexible dollar-amount credit; instead, specific request counts are free for each API.
+Cost per 1,000 Requests: Once the free tier of 10,000 requests is exhausted, the cost is $5.00 USD per 1,000 requests for monthly volumes between 10,001 and 100,000.
+Volume discounts apply for higher usage (e.g., $4.00 per 1,000 requests for 100,001–500,000).
+Relevant Documentation:
+Google Maps Platform Pricing List – Lists the "Essentials" pricing table with the Geocoding API row showing the "10,000" Free Usage Cap and "$5.00" pricing tier.
+Geocoding API SKU Details – Provides specific details on the "SKU: Geocoding" under the Essentials category.
+
+Does the response include a screenshot of the open tab?
+
+Yes
+Look carefully at the screenshot. In the screenshot, did the agent encounter a CAPTCHA, security check, or anything else that suggests the website is blocking the agent?
+
+No
+Does the task require access to the user's account, for example, checking e-mail, looking at the user’s calendar, or logging in to a website with the user’s account?
+
+No
+Does the response include links?
+
+Yes
+Click on all the links. Do the links work? Note that invalid links are often rewritten as Google searches for the broken URL.
+
+All links are valid
+TASK COMPLETION
+How well did the AI fulfill the user prompt?
+Base your answer on the constraints you defined in the previous question.
+
+
+Fully Complete
+Please provide a justification for this rating.
+Response A covers the current pricing and free usage details for the Google Maps Platform Geocoding API based on official sources. It included all the information the user requested: the free request amount, post-free pricing, and a working documentation link. The response met the main goal and all sub-requests and surpassed it by including additional useful verification links for the user, making this response fully complete.
+
+FACTUAL ACCURACY
+How factually accurate is the information?
+
+Completely Accurate
+Please provide a justification for this rating.
+Claim 1: Based on the current Google Maps Platform pricing documentation (updated to reflect the model effective March 1, 2025), the pricing structure for the Geocoding API is as follows: Monthly Free Usage: The first 10,000 requests per month are included for free (designated as the "Free Usage Cap").
+Note: The previous $200 USD monthly credit model was retired on February 28, 2025, and replaced by these per-SKU free usage thresholds. There is no longer a flexible dollar-amount credit; instead, specific request counts are free for each API.
+
+Objective - Accurate
+Justification: The official pricing transition documentation from March 2025 confirms the end of the $200 monthly credit prior to the new pricing structure, making this claim factually accurate.
+Source 1: https://developers.google.com/maps/billing-and-pricing/march-2025
+
+Claim 2: Cost per 1,000 Requests: Once the free tier of 10,000 requests is exhausted, the cost is $5.00 USD per 1,000 requests for monthly volumes between 10,001 and 100,000.
+Volume discounts apply for higher usage (e.g., $4.00 per 1,000 requests for 100,001–500,000).
+
+Objective - Accurate
+Justification: The Google Maps Platform pricing tables show that after the free usage cap of 10,000 requests is exceeded, the first paid pricing tier for the Geocoding API is $5.00 per 1,000 requests and discounts for higher tiers, making this claim verifiably accurate., 
+Source 1: https://developers.google.com/maps/billing-and-pricing/pricing
+
+Claim 3: Google Maps Platform Pricing List – Lists the "Essentials" pricing table with the Geocoding API row showing the "10,000" Free Usage Cap and "$5.00" pricing tier.
+
+Objective - Accurate
+Justification: This link is the core services pricing list, making this claim verifiably accurate.
+
+
+Source 1: https://developers.google.com/maps/billing-and-pricing/pricing
+
+Claim 4: Geocoding API SKU Details – Provides specific details on the "SKU: Geocoding" under the Essentials category.
+
+Objective - Accurate
+Justification: This link provides details on Geocoding SKU details, making this claim verifiably accurate.
+Source 1: https://developers.google.com/maps/billing-and-pricing/sku-details#geocoding-ess-sku
+
+The response contains 4 claim(s):
+- 0 Inaccurate
+- 0 Unsupported
+- 0 Disputed
+- 4 Accurate
+- 0 Can't confidently assess
+
+
+AI PERFORMANCE
+How would you rate the quality of the AI's performance?
+Excellent (expert and optimal)
+Please provide a justification for this rating.
+Response A delivered an excellent AI performance in a high-quality response by using official sources and demonstrating strong navigation in its research. The response was efficient in providing the right pricing and did not give any unrelated information. It stayed focused on the user's request, including links and ended up giving the user a very user-friendly, useful output quality.
+
+
+RESPONSE B
+
+The Google Maps Platform Geocoding API pricing and usage limits have been updated under the current model (effective as of March 1, 2025). The previous $200 recurring monthly credit has been replaced by monthly free usage tiers for specific API categories.
+Here are the specific details for the Geocoding API (part of the "Essentials" category):
+Monthly Free Usage: 10,000 requests per month are included for free.
+Note: This replaces the previous model where a $200 USD credit provided ~40,000 free requests.
+Cost After Free Usage: $5.00 USD per 1,000 requests.
+This rate applies to the first tier of paid usage (10,001 – 100,000 requests per month).
+Documentation: You can find the official pricing table and details on the Google Maps Platform Pricing page.
+
+
+
+Summary Table (Geocoding API - Essentials SKU)
+Usage Tier (Monthly)
+Price per 1,000 Requests
+0 – 10,000
+Free ($0.00)
+10,001 – 100,000
+$5.00
+100,001 – 500,000
+$4.00
+Prices are subject to change; the values above reflect the "Pay-as-you-go" pricing for the Essentials SKU as of January 2026.
+Does the response include a screenshot of the open tab?
+
+No
+Does the task require access to the user's account, for example, checking e-mail, looking at the user’s calendar, or logging in to a website with the user’s account?
+
+No
+Does the response include links?
+
+Yes
+Click on all the links. Do the links work? Note that invalid links are often rewritten as Google searches for the broken URL.
+
+All links are valid
+TASK COMPLETION
+How well did the AI fulfill the user prompt?
+Base your answer on the constraints you defined in the previous question.
+
+
+Partially Complete
+Please provide a justification for this rating.
+Response B partially completes the task by providing some core pricing and free usage information for the Google Geocoding API. However, it fails in not providing direct documentation links for verification, which was a clear request. Because some of the information is present, but the main goal is not fully met, Response B is only partially complete.
+FACTUAL ACCURACY
+How factually accurate is the information?
+
+Completely Accurate
+Please provide a justification for this rating.
+Claim 1: The Google Maps Platform Geocoding API pricing and usage limits have been updated under the current model (effective as of March 1, 2025). The previous $200 recurring monthly credit has been replaced by monthly free usage tiers for specific API categories
+
+Objective - Accurate
+Justification: Official Google Maps Platform pricing model changed effective March 1st, 2025, making this claim verifiably accurate.
+Source 1: https://developers.google.com/maps/billing-and-pricing/march-2025
+
+Claim 2: Monthly Free Usage: 10,000 requests per month are included for free.
+
+Objective - Accurate
+Justification: Though this link is not provided in the response, this claim is verifiably accurate based on the official Google Geocoding API pricing list and SKU Geocoding documentation.
+Source 1: https://developers.google.com/maps/billing-and-pricing/pricing
+Source 2: https://developers.google.com/maps/billing-and-pricing/sku-details#geocoding-ess-sku
+
+Claim 3: Cost After Free Usage: $5.00 USD per 1,000 requests.
+This rate applies to the first tier of paid usage (10,001 – 100,000 requests per month).
+
+Objective - Accurate
+Justification: Official Google Maps Platform pricing confirms that this claim is verifiably accurate.
+Source 1: https://developers.google.com/maps/billing-and-pricing/pricing
+
+Claim 4: Summary Table (Geocoding API - Essentials SKU)
+Usage Tier (Monthly)	Price per 1,000 Requests
+0 – 10,000	Free ($0.00)
+10,001 – 100,000	$5.00
+100,001 – 500,000	$4.00
+Prices are subject to change; the values above reflect the "Pay-as-you-go" pricing for the Essentials SKU as of January 2026.
+
+Objective - Accurate
+Justification: This table and its contents are verifiably accurate per the Google Maps Platform pricing list website.
+Source 1: https://developers.google.com/maps/billing-and-pricing/pricing
+
+The response contains 4 claim(s):
+- 0 Inaccurate
+- 0 Unsupported
+- 0 Disputed
+- 4 Accurate
+- 0 Can't confidently assess
+AI PERFORMANCE
+How would you rate the quality of the AI's performance?
+Acceptable (clumsy but functional)
+Please provide a justification for this rating.
+Response B only points to the Google pricing page, directing the user's attention to the correct information, but it makes a weak attempt to complete the task. While the response itself is concise, additional commentary on conversion clouds the overall message. The main issue was the missing documentation, which the response fails by not providing the user a direct path to verify the information. Output quality was OK, but the response could have scored higher had it not missed the link.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Best Response Overall
+Overall, which response is better?
+A is better
+Please provide a justification for this rating.
+
+Response A Scores:
+
+Task Completion: 5
+Factual Accuracy: 5
+AI Performance: 5
+
+Response B Scores:
+
+Task Completion: 3
+Factual Accuracy: 5
+AI Performance: 3
+
+Final Verdict: Response A is better than Response B
+
+Justification: Response A is the better response because it fully completed the task and all the sub-requests. It gave the user all the information they needed and included several links in the response, making everything very easy to verify. Response B included some core information, but did not provide a direct documentation link, which was a missed constraint. Since task completion and correctness are more important than performance, the missing link makes Response B less useful overall, making Response A the stronger response and the winner.
+
+
+Template (Golden Example)
+
+
+
+
+
+Prompt: 
+
+Understand the user prompt
+
+
+Looking at the user prompt, but not the agent response(s), what constraints should the agent response satisfy?
+
+This creates a checklist describing what the agent should do and should not do to satisfy the request in the user prompt.
+
+The response should*
+
+Should:
+
+
+Should not:
+
+
+
+
+
+
+
+
+
+2. Evaluate the Responses
+
+RESPONSE A
+
+
+Does the response include a screenshot of the open tab?
+
+
+Look carefully at the screenshot. In the screenshot, did the agent encounter a CAPTCHA, security check, or anything else that suggests the website is blocking the agent?
+
+
+Does the task require access to the user's account, for example, checking e-mail, looking at the user’s calendar, or logging in to a website with the user’s account?
+
+
+Does the response include links?
+
+
+Click on all the links. Do the links work? Note that invalid links are often rewritten as Google searches for the broken URL.
+
+
+TASK COMPLETION
+How well did the AI fulfill the user prompt?
+Base your answer on the constraints you defined in the previous question.
+
+
+
+Please provide a justification for this rating.
+
+FACTUAL ACCURACY
+How factually accurate is the information?
+
+
+Please provide a justification for this rating.
+
+
+AI PERFORMANCE
+How would you rate the quality of the AI's performance?
+
+Please provide a justification for this rating.
+
+
+
+RESPONSE B
+
+Does the response include a screenshot of the open tab?
+
+
+Look carefully at the screenshot. In the screenshot, did the agent encounter a CAPTCHA, security check, or anything else that suggests the website is blocking the agent?
+
+
+Does the task require access to the user's account, for example, checking e-mail, looking at the user’s calendar, or logging in to a website with the user’s account?
+
+
+Does the response include links?
+
+
+Click on all the links. Do the links work? Note that invalid links are often rewritten as Google searches for the broken URL.
+
+
+TASK COMPLETION
+How well did the AI fulfill the user prompt?
+Base your answer on the constraints you defined in the previous question.
+
+
+
+Please provide a justification for this rating.
+
+FACTUAL ACCURACY
+How factually accurate is the information?
+
+
+Please provide a justification for this rating.
+
+AI PERFORMANCE
+How would you rate the quality of the AI's performance?
+
+Please provide a justification for this rating.
+
+
+
+
+Best Response Overall
+Overall, which response is better?
+
+Please provide a justification for this rating.
+
+
+
+
+Quick Reference: FAQ Contents
+Quick Reference: FAQ Contents
+1. Process Related
+What should the “Understand the User Prompt” section include?
+
+How should incomplete responses caused by missing user info be rated?
+
+How should CAPTCHA or security blocks be evaluated?
+
+How should “check my email” prompts with missing access be handled?
+
+How should responses be evaluated when the date or user location is unknown?
+
+How should justifications be written? 
+
+When should the Justification Builder be used?
+
+How should factual accuracy be rated for subjective-only responses?
+
+What should be done if a previously submitted task appears again?
+
+What should be done if the user prompt is missing or blank?
+
+When should “Task blocked by unusual errors or crashes” be marked Yes?
+What is the Golden Rule?
+Common Errors
+Link Evaluation Guidelines 
+What is considered a broken or invalid link?
+
+How should Google search redirect links be evaluated?
+
+Are CAPTCHA or security-page links considered broken?
+
+How should valid, broken, inaccurate, and user-requested links be penalized?
+
+How should “Note to rater” in model responses be evaluated?
+
+2. Project Operations & Logistics
+How do we know when a batch is complete?
+
+What should I do if I just onboarded and have no task access?
+
+What is the expected AHT for this project?
+
+How should time be tracked for this project?
+
+When will the next batch of tasks be released?
+
+Is there a daily or weekly cap on hours?
+
+Can we work over the weekend?
+
+What should I do if I don’t have access to Jibble?
+
+When should Jibble be used?
+
+What should I do if I don’t have access to Turing University?
+
+Is time spent on Turing University paid?
+
+What should I do if I receive an “Invitation to Labeling Tool” email?
+
+
+
+==================================================
+
+--- Processing PPTX: Weekly Training 2_ Best Response Guide & Overall Justification.pptx ---
+[Slide 1]
+
+Weekly Training 2: 
+
+Best Response Guide & Overall Justification
+Asha Rebellya Prince
+
+[Slide 2]
+
+Today’s Training Agenda 📚
+
+What We’ll Cover Today:
+🏆 Best Response Guide (🚨 –20 Straight Fail)
+Comparing Response A vs Response B
+Applying the Golden Rules
+Choosing the correct winner
+📝 Writing Overall Justification (🚨 –20 Straight Fail)
+✅ Trainer Self-Audit 
+
+
+
+[Slide 3]
+
+🏆 Best Response Guide
+01
+
+[Slide 4]
+
+🏆 Best Response Guide
+Step 1 – Review the Evidence 🕵️
+Now your job is to:
+Make a final decision. 
+Defend it clearly
+
+[NOTE: Your decision is based on performance and not personal preferences!!!]
+
+Before choosing a winner:
+You should have reviewed both responses
+You should have answered all required evaluation questions
+You should have evidence, not opinions. 
+
+[Slide 5]
+
+Step 2 – Compare Scores Side-by-Side ⚖️
+👉 Look for where the differences are, not just totals.
+
+[Slide 6]
+
+Step 3 – 👑Apply the Golden Rules
+👑 Rule #1: Correctness Is King 
+
+Task Completion and Factual Accuracy always come first
+A response that is incorrect or incomplete cannot win, no matter how polished it looks
+
+👔 Rule #2 – Performance Is the Tie-Breaker
+
+Use AI Performance ONLY when:
+Task Completion scores are equal
+Factual Accuracy scores are equal
+
+
+[Slide 7]
+
+Step 4 – Winner-Selection Scale
+
+[Slide 8]
+
+🏆When to Pick Each Option
+
+[Slide 9]
+
+📝 Writing Overall Justification
+02
+Do not copy justifications within a task, even if the responses are very similar, and do not reuse justifications across different tasks. This is strictly not allowed.
+
+[Slide 10]
+
+Section 1: Scores
+Response A Scores:
+
+- Task Completion: [Your Rating]
+- Factual Accuracy: [Your Rating]
+- AI Performance: [Your Rating]
+
+Response B Scores:
+
+- Task Completion: [Your Rating]
+- Factual Accuracy: [Your Rating]
+- AI Performance: [Your Rating]
+Example:
+Response A Scores:
+
+- Task Completion: [5]
+- Factual Accuracy: [3]
+- AI Performance: [5]
+
+Response B Scores:
+
+- Task Completion: [2]
+- Factual Accuracy: [1]
+- AI Performance: [1]
+NOTE: For Cannot confidently assess in Factual Accuracy, use “Cannot confidently assess.” You do not have to use numeric scores or N/A.
+
+[Slide 11]
+
+Section 2: Final Verdict
+Use the winner selection scale to write your final verdict!
+
+Final Verdict: [e.g., Response A is much better.] 
+
+[NOTE: Do not select About the same unless the responses are truly identical. If possible, look for even subtle differences in AI Performance before choosing this option.]
+
+[Slide 12]
+
+Section 3: Justification
+Should be 50+ words (no ONE liners)
+Explain the reason for your final recommendation (referencing the scores and Golden Rules)
+	
+	Example: Response A is recommended because it included the required product link, which the user explicitly asked for. Response B identified the correct item but missed this key requirement and thus failed in task completion. Since task completion takes priority over performance, Response A is the correct choice.
+
+Explain the most important difference that led to your choice
+
+Example: Response A navigated directly to the relevant page, avoided repeated or unnecessary steps, and presented the required information clearly. Response B took extra steps and opened unrelated pages, making the process less efficient.
+
+[Slide 13]
+
+Golden Example
+Response A is the better response because it fully completed the task and all the sub-requests. It gave the user all the information they needed and included several links in the response, making everything very easy to verify. Response B included some core information, but did not provide a direct documentation link, which was a missed constraint. Since task completion and correctness are more important than performance, the missing link makes Response B less useful overall, making Response A the stronger response and the winner.
+
+NOTE: Do not use any LLMs to write your justification, and do not use tools like Grammarly or Quillbot for spell checks. The client is not expecting fancy language. Simple, clear wording that explains all the requirements is what matters.
+
+
+[Slide 14]
+
+✅ Trainer Checklist
+⬜ 🧠 Prompt understood (Main goal + ALL sub-requests. Yes, all.)
+
+⬜ 📌 All constraints & expectations captured (No “oops I missed that” later.)
+
+⬜ 📋 Should Do / Should Not Do present (Structure exists. Chaos does not.)
+
+⬜ 🚫🤖 No AI used to evaluate (Not even “just to double-check.” Naughty.)
+
+⬜ 🎯 Main goal fulfilled (The actual thing the user asked for.)
+
+⬜ 🧩 ALL requirements & sub-requests fulfilled (“Almost” does not count.)
+
+⬜ 🔍 Every objective claim identified (If it can be fact-checked, it must be.)
+
+⬜ 📚 Every objective claim fact-checked (Trust issues encouraged.)
+
+
+[Slide 15]
+
+⬜ 🤔 “Cannot confidently assess” used when needed (Confidence ≠ guessing.)
+
+⬜ 🧾 All claims included in justification builder (No claim left behind.)
+
+⬜ 🔗 Sources added for each factual claim (Receipts or it didn’t happen.)
+
+⬜ ✍️ Justifications are detailed (One-liners go straight to jail.)
+
+⬜ 🤖⚙️ AI Performance evaluated (Navigation • Efficiency • Output)
+
+⬜ 👑 Winner follows Golden Rules (Correct > Pretty. Always.)
+
+⬜ 🔢 Scores match winner selection (Math is still real.)
+
+⬜ 🧩 Winner selection matches justification (They should be friends.)
+
+⬜ 📝 Final justification is 50+ words AND detailed enough (Length + substance. Both required.)
+
+⬜ 🧠 Did I write this myself for this task? (No copy-paste, no repeats, no shortcuts.)
+
+
+[Slide 16]
+
+🕵️‍♀️🔍 Be the QA
+It’s your turn to switch roles.
+
+You are no longer the trainer.
+You are the QA reviewer. 👀
+
+[Slide 17]
+
+User Prompt: Find me two budget-friendly hotels near Times Square, New York, for next weekend. Include prices, booking links, and briefly mention why each option is budget-friendly.
+Response A:
+ 
+Hotel Edison: 
+
+Located directly in Times Square. The price starts at $210 per night. This hotel is budget-friendly because of its central location and frequent discounts.
+
+YOTEL New York:
+
+About a 10-minute walk from Times Square. Prices start at $195 per night. It is considered budget-friendly due to its smaller room sizes and competitive pricing for the area.
+Response B:
+ 
+Hotel Edison
+
+price: $210 per 
+night booking link: 
+
+https://www.hoteledisonnyc.com budget 
+
+friendly because central location
+
+YOTEL New York price $195/
+night link https://www.yotel.com
+
+budget friendly smaller rooms cheaper than nearby hotels
+Assume that the responses are factually accurate!
+01
+
+[Slide 18]
+
+The trainer has picked Response A to be the best response. Did they make the right choice?
+
+[Slide 19]
+
+Correct QA Verdict
+❌ The trainer did NOT make the correct choice.
+
+Why:
+
+Response A missed a required sub-request: ❌ no booking links
+Response B fulfilled all requirements, including prices, booking links, and budget justification
+Formatting issues fall under AI Performance, not Task Completion
+
+👑 Golden Rule Applied:
+Correctness (Task Completion) outweighs formatting and presentation.
+
+Correct Winner:
+
+🏆 Response B
+
+Key Takeaway for QAs:
+
+A response that looks broken but fulfills every requirement
+beats a polished response that misses even one.
+
+[Slide 20]
+
+Which of the following answers follows the Overall Justification template correctly and completely?
+Option 1:
+
+Response A Scores:
+Task Completion: [1]
+Factual Accuracy: N/A
+AI Performance: [1]
+
+Response B Scores:
+Task Completion: [5]
+Factual Accuracy: [5]
+AI Performance: [5]
+
+Final Verdict:
+Response B is much better than Response A
+
+Justification:
+Response B completed the task successfully and provided accurate information, while Response A failed due to a security block. Therefore, Response B is the better response.
+Option 2:
+
+Response A Scores:
+
+Task Completion: [1]
+Factual Accuracy: Cannot Confidently Assess
+AI Performance: [1]
+
+Final Verdict:
+Response B is much better than Response A
+
+Justification:
+Response B fulfilled the user’s request by finding suitable group pottery classes and verifying availability, demonstrating strong task completion and accuracy. Response A could not complete the task due to a security restriction and therefore performed poorly across all evaluation criteria. Based on these factors, Response B is the correct choice.
+02
+
+[Slide 21]
+
+Option 3:
+
+Response A Scores:
+Task Completion: [1]
+Factual Accuracy: Cannot Confidently Assess
+AI Performance: [1]
+
+Response B Scores:
+Task Completion: [5]
+Factual Accuracy: [5]
+AI Performance: [5]
+
+Final Verdict: Response B is much better than Response A
+
+Justification: Response A is much better than Response B based on the assigned scores and overall evaluation criteria. Response A was rated Fully Complete for Task Completion and Completely Accurate for Factual Accuracy because it successfully met the user’s goal by identifying appropriate group pottery classes in San Francisco and checking availability across multiple upcoming weekends. All objective claims were supported by reliable sources, and the agent demonstrated strong navigation, efficient execution, and clear presentation, resulting in Excellent AI Performance. In contrast, Response B was rated Not at all complete for Task Completion and Cannot Confidently Assess for Factual Accuracy because the agent encountered a security block and could not access or verify the required information, which also led to an Unacceptable AI Performance rating. Given these differences, Response A is the correct choice."
+Option 4:
+
+Response A Scores:
+Task Completion: Not at all complete [1]
+Factual Accuracy: Cannot Confidently Assess [0]
+AI Performance: Unacceptable [1]
+
+Response B Scores:
+Task Completion: Fully Complete [5]
+Factual Accuracy: Completely Accurate [5]
+AI Performance: Excellent [5]
+
+Final Verdict:
+Response A is better than Response B
+
+Justification:
+Response B clearly met the user’s requirements by providing accurate, well-sourced information and demonstrating excellent navigation and execution. Response A failed to complete the task due to a security block and did not provide usable information. Based on the scores and evaluation criteria, Response B should be selected.
+
+[Slide 22]
+
+Option 1:
+
+Response A Scores:
+Task Completion: [1]
+Factual Accuracy: N/A
+AI Performance: [1]
+
+Response B Scores:
+Task Completion: [5]
+Factual Accuracy: [5]
+AI Performance: [5]
+
+Final Verdict:
+Response B is much better than Response A
+
+Justification:
+Response B completed the task successfully and provided accurate information, while Response A failed due to a security block. Therefore, Response B is the better response.
+
+[Slide 23]
+
+Option 2:
+
+Response A Scores:
+
+Task Completion: [1]
+Factual Accuracy: Cannot Confidently Assess
+AI Performance: [1]
+
+Missing Response B Scores
+
+Final Verdict:
+Response B is much better than Response A
+
+Justification:
+Response B fulfilled the user’s request by finding suitable group pottery classes and verifying availability, demonstrating strong task completion and accuracy. Response A could not complete the task due to a security restriction and therefore performed poorly across all evaluation criteria. Based on these factors, Response B is the correct choice.
+
+[Slide 24]
+
+Option 3:
+
+Response A Scores:
+Task Completion: [1]
+Factual Accuracy: Cannot Confidently Assess
+AI Performance: [1]
+
+Response B Scores:
+Task Completion: [5]
+Factual Accuracy: [5]
+AI Performance: [5]
+
+Final Verdict: Response B is much better than Response A
+
+Justification: Response A is much better than Response B based on the assigned scores and overall evaluation criteria. Response A was rated Fully Complete for Task Completion and Completely Accurate for Factual Accuracy because it successfully met the user’s goal by identifying appropriate group pottery classes in San Francisco and checking availability across multiple upcoming weekends. All objective claims were supported by reliable sources, and the agent demonstrated strong navigation, efficient execution, and clear presentation, resulting in Excellent AI Performance. In contrast, Response B was rated Not at all complete for Task Completion and Cannot Confidently Assess for Factual Accuracy because the agent encountered a security block and could not access or verify the required information, which also led to an Unacceptable AI Performance rating. Given these differences, Response A is the correct choice."
+
+[Slide 25]
+
+Option 4:
+
+Response A Scores:
+Task Completion: Not at all complete [1]
+Factual Accuracy: Cannot Confidently Assess [0]
+AI Performance: Unacceptable [1]
+
+Response B Scores:
+Task Completion: Fully Complete [5]
+Factual Accuracy: Completely Accurate [5]
+AI Performance: Excellent [5]
+
+Final Verdict:
+Response A is better than Response B
+
+Justification:
+Response B clearly met the user’s requirements by providing accurate, well-sourced information and demonstrating excellent navigation and execution. Response A failed to complete the task due to a security block and did not provide usable information. Based on the scores and evaluation criteria, Response B should be selected.
+
+[Slide 26]
+
+We would love to hear from you!
+
+Let us know what we did well and what we could do better.
+
+==================================================
+
+--- Processing DOCX: FAQs Computer Use Eval.docx ---
 
 Quick Reference: FAQ Contents
 Quick Reference: FAQ Contents
@@ -672,7 +2202,7 @@ Therefore, both responses were about the same.
 
 ==================================================
 
---- Reading Instructiuons-Bluedog-Static-sxs.docx ---
+--- Processing DOCX: Instructiuons-Bluedog-Static-sxs.docx ---
 
 Task Intro
 
@@ -960,7 +2490,7 @@ Justification: [In 50+ words, write the reason for your final recommendation, re
 
 ==================================================
 
---- Reading Step by Step Instructions to Use the Justification Builder.docx ---
+--- Processing DOCX: Step by Step Instructions to Use the Justification Builder.docx ---
 
 Step 1: Open the Justification Builder
 Click on the Justification Builder icon located on the right side of the screen. 
@@ -1016,7 +2546,7 @@ Paste the copied content directly into the workspace or submission area.
 
 ==================================================
 
---- Reading [COMPUTER USE EVAL] Instructions with Task Flow + Justifications Details.docx ---
+--- Processing DOCX: [COMPUTER USE EVAL] Instructions with Task Flow + Justifications Details.docx ---
 
 Instructions
 Task Intro
@@ -1593,7 +3123,7 @@ Justification: Response B successfully met the main goal and all three sub-reque
 
 ==================================================
 
---- Reading [COMPUTER USE EVAL] QA Rubric.docx ---
+--- Processing DOCX: [COMPUTER USE EVAL] QA Rubric.docx ---
 
 Bluedog-Static-sxs-v3
 QA Assessment Rubrics
@@ -1989,6 +3519,481 @@ Justification Format Adherence dimension
 Version 1.0 - December 2025
 Initial rubrics for Bluedog-Static-sxs
 Basic scoring framework
+
+==================================================
+
+--- Processing PPTX: Weekly Training_  Factual Accuracy.pptx ---
+[Slide 1]
+
+Weekly Training 
+Factual Accuracy
+Asha Rebellya Prince
+
+[Slide 2]
+
+1. Identify Objective vs Subjective Statements
+2. Verify Objective Claims Accurately
+3. Handle Edge Cases With Confidence
+4. Use the Justification Builder or Justification Template Correctly
+Training Objectives
+
+[Slide 3]
+
+What Is a Claim?
+A claim is any statement in the response that can be checked for accuracy—it can be proven either true or false. You should only fact-check objective claims.
+Objective vs Subjective Claims
+Objective claims
+Verifiable with evidence
+Can be proven true or false
+Subjective claims
+Opinions, beliefs, value judgments
+Cannot be proven true or false
+Ignored for Factual Accuracy
+
+[Slide 4]
+
+Scenario
+Example Statement
+Verify?
+Fact
+“Zoom was founded in 2011.”
+Yes
+Date
+“The policy was updated on March 12, 2024.”
+Yes
+Location
+“The company headquarters is in Toronto.”
+Yes
+Action Taken
+“The product was added to the cart.”
+Yes
+Quantitative Information
+“The survey included 1,200 participants.”
+Yes
+Cause-and-Effect
+“The update reduced application errors.”
+Yes
+Subjective Only
+“The interface looks bad.”
+No
+
+
+
+
+
+
+How to Decide What Needs Verification – Examples
+
+[Slide 5]
+
+“The Android operating system was released in 2008.” Objective – Verifiable release year
+“Android phones are better than iPhones.” Subjective – Opinion/value judgment
+“The report was submitted on March 12, 2024.” Objective – Verifiable date
+“This report is extremely thorough.” Subjective – Personal judgment
+“The app crashed after the update.” Objective – Factual system behavior (can be verified with logs or evidence)
+“The update definitely ruined the app experience.”Subjective – Opinion, even though “definitely” sounds factual
+
+
+[Slide 6]
+
+How to Verify Objective Claims
+1. External Research (Most Common Case)
+2.  Using Links Provided in the Response
+3. Verifying Agent Actions Using Screenshots
+
+
+
+[Slide 7]
+
+External Research (Most Common Case)
+When to Use
+No links are provided
+Provided links are insufficient
+Claims are general knowledge or public facts
+How to Verify
+Use reputable external sources:
+Encyclopedias
+Government websites
+Academic journals
+Reputable news organizations
+Use targeted keywords that match the claim exactly
+
+
+[Slide 8]
+
+2. Using Links Provided in the Response
+When to Use
+The response includes links
+The links are accessible and relevant
+How to Verify
+Open the link
+Confirm the source is reputable
+Check that the evidence directly supports the claim
+
+[Slide 9]
+
+3. Verifying Agent Actions Using Screenshots
+When to Use
+The task involves agent actions (adding to cart)
+A screenshot is provided as evidence
+How to Verify
+Check the screenshot carefully
+Confirm whether the claimed action is visibly completed
+Look for indicators such as:- Confirmation messages
+- Updated cart icons
+Example:
+Claim: “The item was successfully added to the cart.”
+Verification:
+Screenshot shows item listed in cart
+Quantity and product name are visible
+
+
+[Slide 10]
+
+How should embedded links in model responses be handled? 
+Note: If the user did not ask for a link, the agent does NOT have to provide a link in the response.
+1. What is a broken link? A broken link is the same as an invalid link. A link is considered broken/invalid if:
+It does not load at all
+It shows 404 / Page Not Found
+It shows a server error or any error message that prevents the page from loading
+2. If a link opens a Google search page, is it broken?
+No, not automatically. Here’s the exact logic: If clicking an embedded link opens a Google search page, and the actual URL appears in the search bar, then you must copy that URL and paste it directly into the browser. Example link.
+
+[Slide 11]
+
+If that direct link:
+Loads successfully → the link is VALID
+Shows 404 / error / does not load → the link is BROKEN
+So yes, Google search result links can still be valid.
+3. Are links that hit CAPTCHA or security pages broken (NOTE: This refers only to the link embedded in the model’s RESPONSE, not to screenshots showing CAPTCHA or security pages encountered by the model.)?
+No. They are still considered valid. CAPTCHA or security checks are on the service provider side. If the page loads and works after solving CAPTCHA, the link is valid.
+👉 Do NOT mark CAPTCHA/security-page links as broken or invalid
+4. 5. What should you do if the response says:  “Note to rater: a shopping result is embedded here. Pretend the result is correctly inserted here.”
+Assume the link is valid and continue evaluating the response as usual. This link should be marked as factually accurate.
+
+[Slide 12]
+
+Type of Link
+Definition
+Action to Take
+✅ Valid Link
+The page loads successfully when clicked or when the embedded URL is copied and opened directly in the browser. This includes pages that show CAPTCHA or security checks that can be solved to access the content. 
+👍 Do not penalize. Link is considered working and valid.
+❌ Broken / Invalid Link
+The link does not load at all or shows an error message such as 404 / Page Not Found, server error, or any message indicating the page is unavailable.
+⚠️ Penalize under AI Performance, regardless of relevance or user intent.
+🔍 Google Search Redirect Link
+Clicking the embedded link opens a Google search page, but the actual URL appears in the browser search bar. If that URL loads successfully when opened directly, the link is valid.
+📋 Copy the URL and test it directly.
+
+If it loads → ✅ Valid. 
+If it errors → ❌ Broken / Invalid.
+🎯 Inaccurate Link
+The link works but does not point to the correct or specific content required by the prompt (for example, linking to a homepage instead of a requested product page).
+🧾 Penalize under Factual Accuracy.
+🚫 User -Requested Link (Broken or Inaccurate)
+The user explicitly asks for a link, and the provided link is either broken/invalid or inaccurate.
+📉 Penalize under Task Completion, since the user intent is not fulfilled.
+
+[Slide 13]
+
+Claim Labels
+Inaccurate
+Unsupported
+Disputed
+Accurate
+Can't confidently assess
+
+
+[Slide 14]
+
+Claim Label
+Definition
+Example Claim
+Why This Label Applies
+Accurate
+Objective claim that is verifiable and supported by reputable evidence
+“Python was released in 1991.”
+Multiple authoritative sources confirm the release year
+Inaccurate
+Objective claim that is verifiable and proven false by reliable evidence
+“Python was released in 2005.”
+Credible sources show the release year is 1991
+Disputed
+Objective claim where reputable sources disagree and no single accepted truth exists
+“The Amazon River is the longest river in the world.”
+Different sources rank the Amazon or Nile as longest
+Unsupported
+Objective claim that could be verified, but no reliable evidence supports it
+“The update reduced system errors by 40%.”
+No data or credible sources back the percentage
+Can’t Confidently Assess
+Claim cannot be independently verified due to private, inaccessible, or missing evidence
+“My private dashboard shows the task was completed.”
+Evidence exists but is not accessible to the evaluator
+Claim Labels and Definitions
+
+[Slide 15]
+
+Edge Cases: Cannot Confidently Assess
+1. Subjective-Only Responses
+Why : The response contains no objective, verifiable claims.Example
+“This tutorial is very easy to follow.”
+2. Private, Missing, or Inaccessible Information
+Why: Evidence may exist but cannot be accessed by the evaluator.Examples
+“According to my private Google Calendar, the meeting is at 3 PM.”
+“The email confirms the update.” (email not provided)
+3. Broken Links or Blocked Content
+Why: Verification is prevented by technical restrictions.Examples
+Links that return 404 errors
+Pages blocked by CAPTCHA or login walls
+
+
+[Slide 16]
+
+Edge Cases: Cannot Confidently Assess
+
+4. Past Itinerary Planning or Personal History
+Why: Past travel or personal events cannot be independently verified.Examples
+“I stayed near Times Square during my trip last year. What was the price of the hotel?”
+“We took a train from Rome to Florence last summer. For May 23 and 24, what hotels were available in Florence?”
+5. Agent Action Claims Without Verifiable Evidence
+Why: The response claims an action occurred, but no proof is available.Examples
+“The item was added to the cart.” (no screenshot or confirmation)
+“The form was successfully submitted.” (no visible evidence)
+6. Image Prompts
+Why: The links in the response do not workExamples
+“Here is the image you requested.” (The provided link does not work)
+
+
+
+
+
+[Slide 17]
+
+Edge Cases: Cannot Confidently Assess (Refusals)
+Agent refusal scenarios fall into the following categories and should be evaluated accordingly:
+1. Invalid refusalDefinition: The agent refuses to perform the task even though it is capable of completing it and provides no valid reason for the refusal.
+Prompt: Go to firtnine.ca and put Stream II Helmet into the cart.
+Respone B: Let's talk about something else. That's not the type of thing I can help you with.
+Evaluation:
+The agent declines to perform the action despite being able to complete it.
+ • Task Completion: 1 (Not at all Complete) • Factual Accuracy: 0 (Cannot Confidently Assess) • AI Performance: 1 (Unacceptable, broken, or nonsensical)
+
+[Slide 18]
+
+Edge Cases: Cannot Confidently Assess (Refusals)
+2. Valid but not helpful refusalDefinition: The agent cannot perform the task for legitimate reasons but provides little to no explanation, no useful guidance or next steps, and offers minimal user support.
+Prompt: Put a Women's Black & White Skeleton Print Halloween Dress into the cart
+Response A: I am sorry, I am not able to complete the task.
+Evaluation:
+The agent was unable to complete the task because the dress was available in multiple colors and sizes, and the user did not provide those details. However, instead of asking clarifying questions, the agent simply refused the request.
+ • Task Completion: 1 (Not at all Complete) • Factual Accuracy: 0 (Cannot Confidently Assess) • AI Performance: 1 (Unacceptable, broken, or nonsensical)
+3. Blank/ No response Definition: The agent does not generate a response for the task.
+Evaluation: • Task Completion: 1 (Not at all Complete) • Factual Accuracy: 0 (Cannot Confidently Assess) • AI Performance: 1 (Unacceptable, broken, or nonsensical)
+
+
+[Slide 19]
+
+Edge Cases: Cannot Confidently Assess (Refusals)
+4. Valid and helpful refusalDefinition: The agent is unable to complete the task due to legitimate reasons such as safety constraints or insufficient information. It clearly explains why it cannot proceed and provides guidance, alternatives, or appropriate clarifying questions.
+Prompt: Go to myeyebb.com and put Cyber Pink Prescription Cosplay Contacts into the cart.
+
+
+
+
+
+Evaluation:
+The agent explains that the user’s request involves a safety concern and suggests consulting a professional before purchasing the product. While the task is not completed, the agent provides a clear reason and helpful guidance on the next steps.
+ • Task Completion: 5 (Fully Complete) • Factual Accuracy: 5 (Completely Accurate) • AI Performance: 5 (Excellent expert and optimal)
+
+
+[Slide 20]
+
+What Happens to Task Completion When FA is Cannot Confidently Assess?
+Do not assign Fully Complete (5)
+
+🔑 Core Rule:
+If Factual Accuracy is rated as Cannot Confidently Assess for a critical claim, Task Completion cannot be Fully Complete.
+
+
+[Slide 21]
+
+Factual Accuracy and Task Completion Alignment for Evidence-Based Tasks
+✅ Case 1: Valid Evidence Provided (Screenshot or Link)
+Example: “I have added the Palm Golf Co. Icon Snapback Hat to your cart on palmgolfco.com.”
+If a valid screenshot or link clearly verifies the action:
+Factual Accuracy: Fully Accurate
+Task Completion: Fully Complete
+⚖ Case 2: Evidence Partially Verifies the Claim
+If the screenshot or link does not fully confirm completion, penalize proportionally based on the weight of the claim.
+Example: Prompt: Find the product and add it to the cart Response: Shows a screenshot of the product, but it is not added to the cart
+Factual Accuracy: Cannot Confidently Assess
+Task Completion: Partially Complete
+
+
+[Slide 22]
+
+Factual Accuracy and Task Completion Alignment for Evidence-Based Tasks
+❌ Case 3: No Evidence Provided (Only AI Claim)
+If the response claims completion but provides no screenshot, link, or verifiable proof:
+Factual Accuracy: Cannot Confidently Assess (for the unverifiable claim)
+Task Completion: 3–4 (Partially or Mostly Complete)
+🚫 Case 4: Screenshot Is Irrelevant to the Task
+If the provided screenshot does not relate to the claimed action:
+Factual Accuracy: Cannot Confidently Assess
+Task Completion: Not at All Complete
+Overall performance reflects poor verification and execution.
+📌 Applies To:
+Add-to-cart actions
+Email sent claims
+Calendar event creation
+Dynamic prices or availability
+Any external action that cannot be verified
+
+
+
+[Slide 23]
+
+Assessing Overall Factual Accuracy
+When evaluating overall accuracy across multiple claims:
+If there is an equal split (for example, 4 Accurate claims and 4 Cannot Confidently Assess claims), the rating should reflect Mixed Accuracy.
+General Rule for Mixed Claims:
+If most claims are Accurate, rate as Mostly Accurate.
+If most claims are Inaccurate, rate as Mostly Inaccurate.
+If there is an equal balance between Accurate and Cannot Confidently Assess, rate as Mixed Accuracy.
+If the majority of major or critical claims are Cannot Confidently Assess, lean toward the level closest to Cannot Confidently Assess based on claim weight.
+⚖ Important: Always consider the weight and importance of the claims, not just the count. A single critical claim can outweigh multiple minor ones.
+
+
+[Slide 24]
+
+Justification Builder
+Factual Accuracy Justification Template
+Factual Accuracy Template
+(Very important! Gives you -20 if you get it wrong)
+
+[Slide 25]
+
+Justification Builder
+It is mandatory to use either the Justification Builder or the Factual Accuracy Justification Template when writing justifications for Factual Accuracy.
+Step-by-step instructions for using the Justification Builder are available in the Step-by-Step Instructions document.
+When using the Justification Builder:	- Remove all claims from the first response.	- Start entering the claims from the second response.
+The summary section at the bottom of the Justification Builder should be treated as the Final Justification Summary.
+
+[Slide 26]
+
+Factual Accuracy Justification Template:
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+
+Claim 1: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+Claim 2: [Rating Given] Justification: [Brief explanation of your reasoning, referencing the sources.] Sources: [Source 1 URL] [Source 2 URL]
+
+Final Justification: [Overall summary of the response's accuracy.]
+
+[Slide 27]
+
+Factual Accuracy Justification Template:
+Prompt:“When was Google founded?”
+Response:“Google was founded in 1998 by Larry Page and Sergey Brin at Stanford University.”
+Factual Accuracy Justification (Example)
+Objective Claims Identified:
+Google was founded in 1998.
+Google was founded by Larry Page and Sergey Brin.
+Google was founded at Stanford University.
+Claim 1: Accurate
+Justification:Multiple reputable sources confirm that Google was founded in 1998.Sources:https://www.britannica.com/topic/Google-Inchttps://about.google/company-info/
+
+
+[Slide 28]
+
+Factual Accuracy Justification Template:
+Claim 2: Accurate
+Justification:Authoritative sources confirm that Larry Page and Sergey Brin are the founders of Google.Sources:https://www.britannica.com/topic/Google-Inchttps://about.google/company-info/
+Claim 3: Mostly Accurate
+Justification:Sources confirm that Google began as a research project by Page and Brin while they were PhD students at Stanford University. However, the company itself was incorporated later, making the wording slightly imprecise.Sources:https://www.britannica.com/topic/Google-Inchttps://about.google/company-info/
+Final Justification:
+The response contains multiple objective claims that are largely supported by reputable sources. While most information is accurate, one claim is slightly imprecise regarding the company’s founding context. Overall, the response is Mostly Accurate.
+
+
+
+[Slide 29]
+
+Factual Accuracy While Doing Overall Justification
+Response Scores:
+
+Cannot confidently access: [Cannot confidently access]
+Completely Inaccurate: [1]
+Mostly Inaccurate: [2]
+Mixed Accuracy: [3]
+Mostly Accurate: [4]
+Completely Accurate: [5]
+
+[Slide 30]
+
+
+Other Edge Cases and Scenarios
+
+[Slide 31]
+
+Example 1
+
+[Slide 32]
+
+
+
+[Slide 33]
+
+Example 2
+
+[Slide 34]
+
+Prompt: Browse the top 250 movies and find one movie that is available on Prime Video. Give me a link to the IMDB page.
+
+
+Response A: OK. I found that Pulp Fiction is one of the top 250 movies on IMDb and is available on Prime Video.
+
+
+Response B: One movie from the IMDb Top 250 list that is available on Prime Video (for rent or purchase) is The Shawshank Redemption.
+
+[Slide 35]
+
+Example 3
+
+[Slide 36]
+
+Prompt: Browse the top 250 movies and find one movie that is available on Prime Video. Give me a link to the IMDB page.
+
+More information on time sensitive responses and combining claims are coming soon…..
+
+[Slide 37]
+
+Common Errors:
+
+Not distinguishing objective vs. subjective claims
+Failing to provide sources
+Using unreliable sources (Wikipedia, blogs only)
+Not fact-checking claims systematically
+Not checking every claim in the response
+
+[Slide 38]
+
+
+Review
+
+
+
+
+
+
+
+
+
+
+How did you feel about the training today? 
 
 ==================================================
 

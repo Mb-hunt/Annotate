@@ -1,0 +1,8 @@
+IMPORTANT UPDATE FOR AI PERFORMANCE EVALUATION
+
+When explaining or justifying the "AI Performance" rating, you MUST clearly cover these three points:
+1. Navigation
+2. Output Quality
+3. Efficiency
+
+Do not simply give a generic summary. Explicitly address how the agent navigated (did it use the right tools?), the quality of the output (was it accurate and formatted well?), and the efficiency (did it take too many steps?).
