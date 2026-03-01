@@ -1,8 +1,85 @@
-IMPORTANT UPDATE FOR AI PERFORMANCE EVALUATION
+UPDATED RESPONSE FORMAT GUIDE (v4 Instructions)
+================================================
 
-When explaining or justifying the "AI Performance" rating, you MUST clearly cover these three points:
-1. Navigation
-2. Output Quality
-3. Efficiency
+RENAMED DIMENSION: "AI Performance" is now called "Model Quality" (or "Response Experience")
+Use "Model Quality" in all Best Response score summaries going forward.
 
-Do not simply give a generic summary. Explicitly address how the agent navigated (did it use the right tools?), the quality of the output (was it accurate and formatted well?), and the efficiency (did it take too many steps?).
+------------------------------------------------------------
+TASK COMPLETION - NEW FORMAT (use this template):
+
+Response A
+  - Main Goal Fulfilled? [Yes/No]
+  - Condition 1: [Yes/No]
+  - Condition 2: [Yes/No]
+  - Condition 3: [Yes/No]
+  - Final Rating: [Rating]
+  - Justification: [Brief explain how you came to your conclusion]
+
+Response B
+  - Main Goal Fulfilled? [Yes/No]
+  - Condition 1: [Yes/No]
+  - Condition 2: [Yes/No]
+  - Condition 3: [Yes/No]
+  - Final Rating: [Rating]
+  - Justification: [Brief explain how you came to your conclusion]
+
+------------------------------------------------------------
+FACTUAL ACCURACY - JUSTIFICATION TEMPLATE:
+
+Objective Claims Identified:
+[Claim 1 text...]
+[Claim 2 text...]
+[And so on...]
+
+Claim 1: [Rating Given]
+Justification: [Brief explanation of your reasoning, referencing the sources.]
+Sources: [Source 1 URL] [Source 2 URL]
+
+Claim 2: [Rating Given]
+Justification: [Brief explanation of your reasoning, referencing the sources.]
+Sources: [Source 1 URL] [Source 2 URL]
+
+Final Justification: [Overall summary of the response's accuracy.]
+
+------------------------------------------------------------
+MODEL QUALITY (formerly "AI Performance") - WHAT TO EVALUATE:
+
+When evaluating Model Quality, address these four key areas:
+1. Navigation: Was the path logical and direct, or did it meander to irrelevant pages?
+2. Interaction: Did it click the correct buttons and links precisely?
+3. Efficiency: Were there wasted steps, loops, or unnecessary actions?
+4. Output Quality: Is the final output clean and well-formatted?
+
+5-Point Scale:
+(5) Excellent - Flawless, expert-level performance. Direct navigation, precise clicks, no wasted steps.
+(4) Good - Almost perfect, with one small observable flaw.
+(3) Acceptable - Got the job done but in a clumsy or inefficient way.
+(2) Poor - Process itself was a failure; illogical or confused steps.
+(1) Unacceptable - Completely failed to perform required actions.
+
+------------------------------------------------------------
+BEST RESPONSE - FINAL REPORT TEMPLATE:
+
+Response A Scores:
+ - Task Completion: [Rating]
+ - Factual Accuracy: [Rating]
+ - Model Quality: [Rating]
+
+Response B Scores:
+ - Task Completion: [Rating]
+ - Factual Accuracy: [Rating]
+ - Model Quality: [Rating]
+
+Final Verdict: [e.g., Response A is much better]
+Justification: [In 30+ words, explain the most important difference that led to your choice.]
+
+------------------------------------------------------------
+GOLDEN RULES (for Best Response decisions):
+
+1. Correctness is King: Task Completion and Factual Accuracy are almost always more
+   important than Model Quality. A clumsy response that gets the right answer is
+   better than a graceful response that gets the wrong answer.
+
+2. Response Experience is the Tie-Breaker: If both responses are correct and complete,
+   use Model Quality to decide which is "slightly better." The more efficient and
+   skillful agent wins.
