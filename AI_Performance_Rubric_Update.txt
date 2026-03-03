@@ -1,27 +1,27 @@
-UPDATED RESPONSE FORMAT GUIDE (v4 Instructions)
+REVERTED RESPONSE FORMAT GUIDE (v3 Instructions)
 ================================================
 
-RENAMED DIMENSION: "AI Performance" is now called "Model Quality" (or "Response Experience")
-Use "Model Quality" in all Best Response score summaries going forward.
+DIMENSION NAME: "AI Performance" (reverted from Model Quality)
+Use "AI Performance" in all Best Response score summaries.
 
 ------------------------------------------------------------
-TASK COMPLETION - NEW FORMAT (use this template):
+TASK COMPLETION - v3 FORMAT (use this template):
 
 Response A
-  - Main Goal Fulfilled? [Yes/No]
-  - Condition 1: [Yes/No]
-  - Condition 2: [Yes/No]
-  - Condition 3: [Yes/No]
-  - Final Rating: [Rating]
-  - Justification: [Brief explain how you came to your conclusion]
+  Main Goal Fulfilled? [Yes/No]
+  Sub-request 1: [Yes/No]
+  Sub-request 2: [Yes/No]
+  Sub-request 3: [Yes/No]
+  Final Rating: [Rating]
+  Justification: [Brief explain how you came to your conclusion]
 
 Response B
-  - Main Goal Fulfilled? [Yes/No]
-  - Condition 1: [Yes/No]
-  - Condition 2: [Yes/No]
-  - Condition 3: [Yes/No]
-  - Final Rating: [Rating]
-  - Justification: [Brief explain how you came to your conclusion]
+  Main Goal Fulfilled? [Yes/No]
+  Sub-request 1: [Yes/No]
+  Sub-request 2: [Yes/No]
+  Sub-request 3: [Yes/No]
+  Final Rating: [Rating]
+  Justification: [Brief explain how you came to your conclusion]
 
 ------------------------------------------------------------
 FACTUAL ACCURACY - JUSTIFICATION TEMPLATE:
@@ -42,44 +42,44 @@ Sources: [Source 1 URL] [Source 2 URL]
 Final Justification: [Overall summary of the response's accuracy.]
 
 ------------------------------------------------------------
-MODEL QUALITY (formerly "AI Performance") - WHAT TO EVALUATE:
+AI PERFORMANCE - WHAT TO EVALUATE:
 
-When evaluating Model Quality, address these four key areas:
+When evaluating AI Performance, keep an eye on these four behaviors:
 1. Navigation: Was the path logical and direct, or did it meander to irrelevant pages?
 2. Interaction: Did it click the correct buttons and links precisely?
 3. Efficiency: Were there wasted steps, loops, or unnecessary actions?
-4. Output Quality: Is the final output clean and well-formatted?
+4. Output Quality: Is the final scraped text clean and well-formatted?
 
 5-Point Scale:
-(5) Excellent - Flawless, expert-level performance. Direct navigation, precise clicks, no wasted steps.
-(4) Good - Almost perfect, with one small observable flaw.
-(3) Acceptable - Got the job done but in a clumsy or inefficient way.
-(2) Poor - Process itself was a failure; illogical or confused steps.
-(1) Unacceptable - Completely failed to perform required actions.
+(5) Excellent (Expert & Optimal) - Flawless performance. Direct navigation, precise clicks.
+(4) Good (Effective but with minor flaws) - Process with one minor, observable flaw.
+(3) Acceptable (Clumsy but Functional) - Inefficient path or messy output.
+(2) Poor (Illogical & Flawed) - Process was a failure; AI seems confused or lost.
+(1) Unacceptable (Broken or Nonsensical) - Completely failed, stuck in loop, or timed out.
 
 ------------------------------------------------------------
 BEST RESPONSE - FINAL REPORT TEMPLATE:
 
 Response A Scores:
- - Task Completion: [Rating]
- - Factual Accuracy: [Rating]
- - Model Quality: [Rating]
+- Task Completion: [Your Rating]
+- Factual Accuracy: [Your Rating]
+- AI Performance: [Your Rating]
 
 Response B Scores:
- - Task Completion: [Rating]
- - Factual Accuracy: [Rating]
- - Model Quality: [Rating]
+- Task Completion: [Your Rating]
+- Factual Accuracy: [Your Rating]
+- AI Performance: [Your Rating]
 
-Final Verdict: [e.g., Response A is much better]
+Final Verdict: [e.g., Response A is much better.]
 Justification: [In 30+ words, explain the most important difference that led to your choice.]
 
 ------------------------------------------------------------
-GOLDEN RULES (for Best Response decisions):
+GOLDEN RULES:
 
-1. Correctness is King: Task Completion and Factual Accuracy are almost always more
-   important than Model Quality. A clumsy response that gets the right answer is
+1. Correctness is King: Task Completion and Factual Accuracy are almost always more 
+   important than AI Performance. A clumsy response that gets the right answer is 
    better than a graceful response that gets the wrong answer.
 
-2. Response Experience is the Tie-Breaker: If both responses are correct and complete,
-   use Model Quality to decide which is "slightly better." The more efficient and
-   skillful agent wins.
+2. Performance is the Tie-Breaker: If both responses are correct and complete, use AI 
+   Performance to decide which is "slightly better." The more efficient and skillful 
+   agent wins.
