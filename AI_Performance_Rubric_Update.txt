@@ -4,6 +4,8 @@ REVERTED RESPONSE FORMAT GUIDE (v3 Instructions)
 DIMENSION NAME: "AI Performance" (reverted from Model Quality)
 Use "AI Performance" in all Best Response score summaries.
 
+IMPORTANT: Do NOT use numbers (1-5) for ratings. Use the EXACT WORDS from the rating scale.
+
 ------------------------------------------------------------
 TASK COMPLETION - v3 FORMAT (use this template):
 
@@ -12,7 +14,7 @@ Response A
   Sub-request 1: [Yes/No]
   Sub-request 2: [Yes/No]
   Sub-request 3: [Yes/No]
-  Final Rating: [Rating]
+  Final Rating: [EXACT WORDS from scale]
   Justification: [Brief explain how you came to your conclusion]
 
 Response B
@@ -20,8 +22,10 @@ Response B
   Sub-request 1: [Yes/No]
   Sub-request 2: [Yes/No]
   Sub-request 3: [Yes/No]
-  Final Rating: [Rating]
+  Final Rating: [EXACT WORDS from scale]
   Justification: [Brief explain how you came to your conclusion]
+
+Scale: Fully Complete, Mostly Complete, Partially Complete, Minimally Complete, Not at all Complete.
 
 ------------------------------------------------------------
 FACTUAL ACCURACY - JUSTIFICATION TEMPLATE:
@@ -31,15 +35,17 @@ Objective Claims Identified:
 [Claim 2 text...]
 [And so on...]
 
-Claim 1: [Rating Given]
+Claim 1: [EXACT WORDS from scale]
 Justification: [Brief explanation of your reasoning, referencing the sources.]
 Sources: [Source 1 URL] [Source 2 URL]
 
-Claim 2: [Rating Given]
+Claim 2: [EXACT WORDS from scale]
 Justification: [Brief explanation of your reasoning, referencing the sources.]
 Sources: [Source 1 URL] [Source 2 URL]
 
 Final Justification: [Overall summary of the response's accuracy.]
+
+Scale: Completely Accurate, Mostly Accurate, Mixed Accuracy, Mostly Inaccurate, Completely Inaccurate.
 
 ------------------------------------------------------------
 AI PERFORMANCE - WHAT TO EVALUATE:
@@ -50,25 +56,26 @@ When evaluating AI Performance, keep an eye on these four behaviors:
 3. Efficiency: Were there wasted steps, loops, or unnecessary actions?
 4. Output Quality: Is the final scraped text clean and well-formatted?
 
-5-Point Scale:
-(5) Excellent (Expert & Optimal) - Flawless performance. Direct navigation, precise clicks.
-(4) Good (Effective but with minor flaws) - Process with one minor, observable flaw.
-(3) Acceptable (Clumsy but Functional) - Inefficient path or messy output.
-(2) Poor (Illogical & Flawed) - Process was a failure; AI seems confused or lost.
-(1) Unacceptable (Broken or Nonsensical) - Completely failed, stuck in loop, or timed out.
+Scale (Use EXACT WORDS):
+- Excellent (expert and optimal)
+- Good (effective but with minor flaws)
+- Acceptable (clumsy but functional)
+- Poor (illogical or flawed)
+- Unacceptable (broken or nonsensical)
 
 ------------------------------------------------------------
 BEST RESPONSE - FINAL REPORT TEMPLATE:
+(Crucial: Use the EXACT word labels for ratings, NOT numbers)
 
 Response A Scores:
-- Task Completion: [Your Rating]
-- Factual Accuracy: [Your Rating]
-- AI Performance: [Your Rating]
+- Task Completion: [EXACT WORDS]
+- Factual Accuracy: [EXACT WORDS]
+- AI Performance: [EXACT WORDS]
 
 Response B Scores:
-- Task Completion: [Your Rating]
-- Factual Accuracy: [Your Rating]
-- AI Performance: [Your Rating]
+- Task Completion: [EXACT WORDS]
+- Factual Accuracy: [EXACT WORDS]
+- AI Performance: [EXACT WORDS]
 
 Final Verdict: [e.g., Response A is much better.]
 Justification: [In 30+ words, explain the most important difference that led to your choice.]
